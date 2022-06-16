@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>从 Session 到 Redis | 行也安然，坐也安然</title>
+    <meta name="generator" content="VuePress 1.8.2">
+    
+    <meta name="description" content="韩志臻的blog">
+    
+    <link rel="preload" href="/assets/css/0.styles.e4d8b86b.css" as="style"><link rel="preload" href="/assets/js/app.6bb415dc.js" as="script"><link rel="preload" href="/assets/js/2.b1641fc1.js" as="script"><link rel="preload" href="/assets/js/3.67cdd6aa.js" as="script"><link rel="prefetch" href="/assets/js/10.b8677900.js"><link rel="prefetch" href="/assets/js/11.d34941f3.js"><link rel="prefetch" href="/assets/js/12.ac9671cb.js"><link rel="prefetch" href="/assets/js/13.ca7f4786.js"><link rel="prefetch" href="/assets/js/14.dad0bdf2.js"><link rel="prefetch" href="/assets/js/15.2d470cbd.js"><link rel="prefetch" href="/assets/js/16.70244129.js"><link rel="prefetch" href="/assets/js/17.d6da8b6a.js"><link rel="prefetch" href="/assets/js/18.f80ef0a0.js"><link rel="prefetch" href="/assets/js/19.5665b8f8.js"><link rel="prefetch" href="/assets/js/20.5d899f4e.js"><link rel="prefetch" href="/assets/js/21.dec5c18b.js"><link rel="prefetch" href="/assets/js/22.07477ce8.js"><link rel="prefetch" href="/assets/js/23.763a0156.js"><link rel="prefetch" href="/assets/js/24.8068ebdd.js"><link rel="prefetch" href="/assets/js/25.bdc00b1e.js"><link rel="prefetch" href="/assets/js/26.91381f37.js"><link rel="prefetch" href="/assets/js/27.b3a5666f.js"><link rel="prefetch" href="/assets/js/28.01b2069f.js"><link rel="prefetch" href="/assets/js/29.cb5c1fdb.js"><link rel="prefetch" href="/assets/js/30.734fd3f3.js"><link rel="prefetch" href="/assets/js/31.e742bf15.js"><link rel="prefetch" href="/assets/js/32.79477bba.js"><link rel="prefetch" href="/assets/js/33.281f8716.js"><link rel="prefetch" href="/assets/js/34.a2b5d5db.js"><link rel="prefetch" href="/assets/js/35.57430e67.js"><link rel="prefetch" href="/assets/js/36.a17af7ae.js"><link rel="prefetch" href="/assets/js/37.74d8a630.js"><link rel="prefetch" href="/assets/js/38.f61159af.js"><link rel="prefetch" href="/assets/js/39.8293f0d8.js"><link rel="prefetch" href="/assets/js/4.9324647e.js"><link rel="prefetch" href="/assets/js/40.fdee6d10.js"><link rel="prefetch" href="/assets/js/41.4e46454f.js"><link rel="prefetch" href="/assets/js/42.39e5aa9c.js"><link rel="prefetch" href="/assets/js/43.9b6a1d38.js"><link rel="prefetch" href="/assets/js/44.f721397d.js"><link rel="prefetch" href="/assets/js/45.f260a340.js"><link rel="prefetch" href="/assets/js/46.3f8bda6e.js"><link rel="prefetch" href="/assets/js/47.1c6a2c6b.js"><link rel="prefetch" href="/assets/js/48.b5fd1887.js"><link rel="prefetch" href="/assets/js/49.61ceca93.js"><link rel="prefetch" href="/assets/js/5.06aedb8b.js"><link rel="prefetch" href="/assets/js/50.b9d2d960.js"><link rel="prefetch" href="/assets/js/51.b248dc3e.js"><link rel="prefetch" href="/assets/js/52.b28160f1.js"><link rel="prefetch" href="/assets/js/53.ef4d6663.js"><link rel="prefetch" href="/assets/js/54.e23082b7.js"><link rel="prefetch" href="/assets/js/55.98f30d84.js"><link rel="prefetch" href="/assets/js/56.35ef7fe9.js"><link rel="prefetch" href="/assets/js/57.9df1d918.js"><link rel="prefetch" href="/assets/js/58.96c0a782.js"><link rel="prefetch" href="/assets/js/59.d826b7ab.js"><link rel="prefetch" href="/assets/js/6.a6ffe0cf.js"><link rel="prefetch" href="/assets/js/60.b1ec97a4.js"><link rel="prefetch" href="/assets/js/61.671a28d8.js"><link rel="prefetch" href="/assets/js/62.7ecd8c0c.js"><link rel="prefetch" href="/assets/js/63.e81ff19a.js"><link rel="prefetch" href="/assets/js/64.b6f129ac.js"><link rel="prefetch" href="/assets/js/65.17d68b4e.js"><link rel="prefetch" href="/assets/js/66.d786af35.js"><link rel="prefetch" href="/assets/js/67.0501edaa.js"><link rel="prefetch" href="/assets/js/68.6a2bafd5.js"><link rel="prefetch" href="/assets/js/69.5e42c7de.js"><link rel="prefetch" href="/assets/js/7.59967bdb.js"><link rel="prefetch" href="/assets/js/8.28ba1509.js"><link rel="prefetch" href="/assets/js/9.d5a1b55c.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.e4d8b86b.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">行也安然，坐也安然</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">
+  首页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Node" class="dropdown-title"><span class="title">Node</span> <span class="arrow down"></span></button> <button type="button" aria-label="Node" class="mobile-dropdown-title"><span class="title">Node</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/node/pm2/1.html" class="nav-link">
+  pm2
+</a></li><li class="dropdown-item"><h4>
+          实战项目
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/node/blog/intro.html" class="nav-link">
+  博客
+</a></li><li class="dropdown-subitem"><a href="/node/blog/express/0.html" class="nav-link">
+  博客(express)
+</a></li><li class="dropdown-subitem"><a href="/node/blog/koa/0.html" class="nav-link">
+  博客(koa)
+</a></li><li class="dropdown-subitem"><a href="/node/blog/koa-mongodb/0.html" class="nav-link">
+  博客(koa-mongodb)
+</a></li><li class="dropdown-subitem"><a href="/node/cli/1.html" class="nav-link">
+  一个 cli
+</a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="数据存储" class="dropdown-title"><span class="title">数据存储</span> <span class="arrow down"></span></button> <button type="button" aria-label="数据存储" class="mobile-dropdown-title"><span class="title">数据存储</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/db/mysql/0.html" class="nav-link">
+  Mysql
+</a></li><li class="dropdown-item"><!----> <a href="/db/redis/0.html" class="nav-link">
+  Redis
+</a></li><li class="dropdown-item"><!----> <a href="/db/mongodb/0.html" class="nav-link">
+  MongoDB
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="vue" class="dropdown-title"><span class="title">vue</span> <span class="arrow down"></span></button> <button type="button" aria-label="vue" class="mobile-dropdown-title"><span class="title">vue</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/vue/common/0.html" class="nav-link">
+  vue 常见功能
+</a></li><li class="dropdown-item"><!----> <a href="/vue/v3/0.html" class="nav-link">
+  vue3
+</a></li></ul></div></div><div class="nav-item"><a href="/webpack/0.html" class="nav-link">
+  webpack
+</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">
+  首页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Node" class="dropdown-title"><span class="title">Node</span> <span class="arrow down"></span></button> <button type="button" aria-label="Node" class="mobile-dropdown-title"><span class="title">Node</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/node/pm2/1.html" class="nav-link">
+  pm2
+</a></li><li class="dropdown-item"><h4>
+          实战项目
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/node/blog/intro.html" class="nav-link">
+  博客
+</a></li><li class="dropdown-subitem"><a href="/node/blog/express/0.html" class="nav-link">
+  博客(express)
+</a></li><li class="dropdown-subitem"><a href="/node/blog/koa/0.html" class="nav-link">
+  博客(koa)
+</a></li><li class="dropdown-subitem"><a href="/node/blog/koa-mongodb/0.html" class="nav-link">
+  博客(koa-mongodb)
+</a></li><li class="dropdown-subitem"><a href="/node/cli/1.html" class="nav-link">
+  一个 cli
+</a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="数据存储" class="dropdown-title"><span class="title">数据存储</span> <span class="arrow down"></span></button> <button type="button" aria-label="数据存储" class="mobile-dropdown-title"><span class="title">数据存储</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/db/mysql/0.html" class="nav-link">
+  Mysql
+</a></li><li class="dropdown-item"><!----> <a href="/db/redis/0.html" class="nav-link">
+  Redis
+</a></li><li class="dropdown-item"><!----> <a href="/db/mongodb/0.html" class="nav-link">
+  MongoDB
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="vue" class="dropdown-title"><span class="title">vue</span> <span class="arrow down"></span></button> <button type="button" aria-label="vue" class="mobile-dropdown-title"><span class="title">vue</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/vue/common/0.html" class="nav-link">
+  vue 常见功能
+</a></li><li class="dropdown-item"><!----> <a href="/vue/v3/0.html" class="nav-link">
+  vue3
+</a></li></ul></div></div><div class="nav-item"><a href="/webpack/0.html" class="nav-link">
+  webpack
+</a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><a href="/db/mysql/0" class="sidebar-heading clickable"><span>mysql</span> <span class="arrow right"></span></a> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><a href="/db/redis/0" class="sidebar-heading clickable open"><span>redis</span> <span class="arrow down"></span></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/db/redis/0.html" class="sidebar-link">从 Cookie 说起</a></li><li><a href="/db/redis/1.html" class="sidebar-link">从 Cookie 到 Session</a></li><li><a href="/db/redis/2.html" aria-current="page" class="active sidebar-link">从 Session 到 Redis</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/db/redis/2.html#session-的短板" class="sidebar-link">Session 的短板</a></li><li class="sidebar-sub-header"><a href="/db/redis/2.html#redis" class="sidebar-link">Redis</a></li><li class="sidebar-sub-header"><a href="/db/redis/2.html#redis-的安装" class="sidebar-link">Redis 的安装</a></li><li class="sidebar-sub-header"><a href="/db/redis/2.html#redis-使用" class="sidebar-link">Redis 使用</a></li></ul></li><li><a href="/db/redis/3.html" class="sidebar-link">Node 连接 Redis</a></li></ul></section></li><li><section class="sidebar-group collapsable depth-0"><a href="/db/mongodb/0" class="sidebar-heading clickable"><span>mongodb</span> <span class="arrow right"></span></a> <!----></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="从-session-到-redis"><a href="#从-session-到-redis" class="header-anchor">#</a> 从 Session 到 Redis</h1> <h2 id="session-的短板"><a href="#session-的短板" class="header-anchor">#</a> Session 的短板</h2> <p>session 属于 js 变量，它存放在 nodejs 进程内存中</p> <ul><li>当内存有限，访问量过大，内存保证了会对 session 的存储有影响</li> <li>上线后如果是多进程，但是进程之间的内存是无法共享的</li></ul> <h2 id="redis"><a href="#redis" class="header-anchor">#</a> Redis</h2> <ul><li>web server 常用的缓存数据库，数据存放在内存中，读写特别快</li> <li>相比 mysql 访问速度更快，毕竟 mysql 属于硬盘数据库，内存和硬盘的访问速度不是一个数量级别的</li> <li>个人理解:
+<ul><li>nodejs 的运行，可以想象成一个进程的工作。每个进程开始时，都会分配一定的运行内存。像 nodejs，在 64 位中的内存大概不超过 3G。而 session 的写法，相当于将 session 的存储和 nodejs 的运行程序放在了一块内存中。而随着 session 的不断增大，必然会带来内存溢出等问题。</li> <li>而 redis 相当于重新起了一个存储服务。虽然数据都是存储在内存中，但存储的内存和 nodejs 的运行内存并不在一起，而是一个独立的进程。进程与进程之间的内存是不共享的。后期可以分离开单独进行扩容等维护。这也是分层处理的一种思想吧</li></ul></li></ul> <p><img src="/assets/img/redis1.fd4850be.png" alt="An image"></p> <h2 id="redis-的安装"><a href="#redis-的安装" class="header-anchor">#</a> Redis 的安装</h2> <ul><li>安装 1
+Mac 的安装，通过 <code>brew install redis</code> 安装时，需要通过 <code>brew search redis</code> 查询能安装的 redis 版本。按查询结果能直接安装 redis，但是我只安装成功了 redis@4 版本。但是安装后，redis-server 指令一直没有配置成功，就放弃了 ू(ʚ̴̶̷́ .̠ ʚ̴̶̷̥̀ ू)...</li></ul> <p><img src="/assets/img/redis2.aa14fbfe.jpg" alt="An image"></p> <ul><li>安装 2：通过 tar 包安装
+<ul><li>下载压缩包后，在 <code>/usr/local/</code> 中进行解压 <code>tar xzf redis-6.2.6.tar.gz</code></li> <li><code>cd /usr/local/redis-6.2.6.tar.gz</code> 进入 redis 文件夹下，执行<code>make</code> 安装</li> <li>安装后执行 <code>make install</code>, 基本安装结束，配置都才用了默认配置</li> <li>中间碰到了没有权限的问题，通过 <code>sudo</code>即可</li></ul></li></ul> <p><img src="/assets/img/redis3.fe84840f.png" alt="An image"></p> <h2 id="redis-使用"><a href="#redis-使用" class="header-anchor">#</a> Redis 使用</h2> <ul><li><code>redis-server</code> 就可以启动 redis 服务，服务启动后，如图：</li></ul> <p><img src="/assets/img/redis4.bfd48443.png" alt="An image"></p> <ul><li><code>redis-cli</code> 就开启了 redis 的客户端链接，redis 的指令如下：
+<ul><li><code>set key value</code> 设置 key = value</li> <li><code>get key</code> 获取 key 的存储</li> <li><code>keys *</code> 获取全部的存储</li> <li><code>del key</code> 删除 key</li></ul></li></ul> <p><img src="/assets/img/redis5.c66e4fa9.png" alt="An image"></p></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/db/redis/1.html" class="prev">
+        从 Cookie 到 Session
+      </a></span> <span class="next"><a href="/db/redis/3.html">
+        Node 连接 Redis
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.6bb415dc.js" defer></script><script src="/assets/js/2.b1641fc1.js" defer></script><script src="/assets/js/3.67cdd6aa.js" defer></script>
+  </body>
+</html>

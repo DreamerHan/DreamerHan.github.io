@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>express-session 与 Redis | 行也安然，坐也安然</title>
+    <meta name="generator" content="VuePress 1.8.2">
+    
+    <meta name="description" content="韩志臻的blog">
+    
+    <link rel="preload" href="/assets/css/0.styles.e4d8b86b.css" as="style"><link rel="preload" href="/assets/js/app.6bb415dc.js" as="script"><link rel="preload" href="/assets/js/2.b1641fc1.js" as="script"><link rel="preload" href="/assets/js/29.cb5c1fdb.js" as="script"><link rel="prefetch" href="/assets/js/10.b8677900.js"><link rel="prefetch" href="/assets/js/11.d34941f3.js"><link rel="prefetch" href="/assets/js/12.ac9671cb.js"><link rel="prefetch" href="/assets/js/13.ca7f4786.js"><link rel="prefetch" href="/assets/js/14.dad0bdf2.js"><link rel="prefetch" href="/assets/js/15.2d470cbd.js"><link rel="prefetch" href="/assets/js/16.70244129.js"><link rel="prefetch" href="/assets/js/17.d6da8b6a.js"><link rel="prefetch" href="/assets/js/18.f80ef0a0.js"><link rel="prefetch" href="/assets/js/19.5665b8f8.js"><link rel="prefetch" href="/assets/js/20.5d899f4e.js"><link rel="prefetch" href="/assets/js/21.dec5c18b.js"><link rel="prefetch" href="/assets/js/22.07477ce8.js"><link rel="prefetch" href="/assets/js/23.763a0156.js"><link rel="prefetch" href="/assets/js/24.8068ebdd.js"><link rel="prefetch" href="/assets/js/25.bdc00b1e.js"><link rel="prefetch" href="/assets/js/26.91381f37.js"><link rel="prefetch" href="/assets/js/27.b3a5666f.js"><link rel="prefetch" href="/assets/js/28.01b2069f.js"><link rel="prefetch" href="/assets/js/3.67cdd6aa.js"><link rel="prefetch" href="/assets/js/30.734fd3f3.js"><link rel="prefetch" href="/assets/js/31.e742bf15.js"><link rel="prefetch" href="/assets/js/32.79477bba.js"><link rel="prefetch" href="/assets/js/33.281f8716.js"><link rel="prefetch" href="/assets/js/34.a2b5d5db.js"><link rel="prefetch" href="/assets/js/35.57430e67.js"><link rel="prefetch" href="/assets/js/36.a17af7ae.js"><link rel="prefetch" href="/assets/js/37.74d8a630.js"><link rel="prefetch" href="/assets/js/38.f61159af.js"><link rel="prefetch" href="/assets/js/39.8293f0d8.js"><link rel="prefetch" href="/assets/js/4.9324647e.js"><link rel="prefetch" href="/assets/js/40.fdee6d10.js"><link rel="prefetch" href="/assets/js/41.4e46454f.js"><link rel="prefetch" href="/assets/js/42.39e5aa9c.js"><link rel="prefetch" href="/assets/js/43.9b6a1d38.js"><link rel="prefetch" href="/assets/js/44.f721397d.js"><link rel="prefetch" href="/assets/js/45.f260a340.js"><link rel="prefetch" href="/assets/js/46.3f8bda6e.js"><link rel="prefetch" href="/assets/js/47.1c6a2c6b.js"><link rel="prefetch" href="/assets/js/48.b5fd1887.js"><link rel="prefetch" href="/assets/js/49.61ceca93.js"><link rel="prefetch" href="/assets/js/5.06aedb8b.js"><link rel="prefetch" href="/assets/js/50.b9d2d960.js"><link rel="prefetch" href="/assets/js/51.b248dc3e.js"><link rel="prefetch" href="/assets/js/52.b28160f1.js"><link rel="prefetch" href="/assets/js/53.ef4d6663.js"><link rel="prefetch" href="/assets/js/54.e23082b7.js"><link rel="prefetch" href="/assets/js/55.98f30d84.js"><link rel="prefetch" href="/assets/js/56.35ef7fe9.js"><link rel="prefetch" href="/assets/js/57.9df1d918.js"><link rel="prefetch" href="/assets/js/58.96c0a782.js"><link rel="prefetch" href="/assets/js/59.d826b7ab.js"><link rel="prefetch" href="/assets/js/6.a6ffe0cf.js"><link rel="prefetch" href="/assets/js/60.b1ec97a4.js"><link rel="prefetch" href="/assets/js/61.671a28d8.js"><link rel="prefetch" href="/assets/js/62.7ecd8c0c.js"><link rel="prefetch" href="/assets/js/63.e81ff19a.js"><link rel="prefetch" href="/assets/js/64.b6f129ac.js"><link rel="prefetch" href="/assets/js/65.17d68b4e.js"><link rel="prefetch" href="/assets/js/66.d786af35.js"><link rel="prefetch" href="/assets/js/67.0501edaa.js"><link rel="prefetch" href="/assets/js/68.6a2bafd5.js"><link rel="prefetch" href="/assets/js/69.5e42c7de.js"><link rel="prefetch" href="/assets/js/7.59967bdb.js"><link rel="prefetch" href="/assets/js/8.28ba1509.js"><link rel="prefetch" href="/assets/js/9.d5a1b55c.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.e4d8b86b.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">行也安然，坐也安然</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">
+  首页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Node" class="dropdown-title"><span class="title">Node</span> <span class="arrow down"></span></button> <button type="button" aria-label="Node" class="mobile-dropdown-title"><span class="title">Node</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/node/pm2/1.html" class="nav-link">
+  pm2
+</a></li><li class="dropdown-item"><h4>
+          实战项目
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/node/blog/intro.html" class="nav-link">
+  博客
+</a></li><li class="dropdown-subitem"><a href="/node/blog/express/0.html" class="nav-link">
+  博客(express)
+</a></li><li class="dropdown-subitem"><a href="/node/blog/koa/0.html" class="nav-link">
+  博客(koa)
+</a></li><li class="dropdown-subitem"><a href="/node/blog/koa-mongodb/0.html" class="nav-link">
+  博客(koa-mongodb)
+</a></li><li class="dropdown-subitem"><a href="/node/cli/1.html" class="nav-link">
+  一个 cli
+</a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="数据存储" class="dropdown-title"><span class="title">数据存储</span> <span class="arrow down"></span></button> <button type="button" aria-label="数据存储" class="mobile-dropdown-title"><span class="title">数据存储</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/db/mysql/0.html" class="nav-link">
+  Mysql
+</a></li><li class="dropdown-item"><!----> <a href="/db/redis/0.html" class="nav-link">
+  Redis
+</a></li><li class="dropdown-item"><!----> <a href="/db/mongodb/0.html" class="nav-link">
+  MongoDB
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="vue" class="dropdown-title"><span class="title">vue</span> <span class="arrow down"></span></button> <button type="button" aria-label="vue" class="mobile-dropdown-title"><span class="title">vue</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/vue/common/0.html" class="nav-link">
+  vue 常见功能
+</a></li><li class="dropdown-item"><!----> <a href="/vue/v3/0.html" class="nav-link">
+  vue3
+</a></li></ul></div></div><div class="nav-item"><a href="/webpack/0.html" class="nav-link">
+  webpack
+</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">
+  首页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Node" class="dropdown-title"><span class="title">Node</span> <span class="arrow down"></span></button> <button type="button" aria-label="Node" class="mobile-dropdown-title"><span class="title">Node</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/node/pm2/1.html" class="nav-link">
+  pm2
+</a></li><li class="dropdown-item"><h4>
+          实战项目
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/node/blog/intro.html" class="nav-link">
+  博客
+</a></li><li class="dropdown-subitem"><a href="/node/blog/express/0.html" class="nav-link">
+  博客(express)
+</a></li><li class="dropdown-subitem"><a href="/node/blog/koa/0.html" class="nav-link">
+  博客(koa)
+</a></li><li class="dropdown-subitem"><a href="/node/blog/koa-mongodb/0.html" class="nav-link">
+  博客(koa-mongodb)
+</a></li><li class="dropdown-subitem"><a href="/node/cli/1.html" class="nav-link">
+  一个 cli
+</a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="数据存储" class="dropdown-title"><span class="title">数据存储</span> <span class="arrow down"></span></button> <button type="button" aria-label="数据存储" class="mobile-dropdown-title"><span class="title">数据存储</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/db/mysql/0.html" class="nav-link">
+  Mysql
+</a></li><li class="dropdown-item"><!----> <a href="/db/redis/0.html" class="nav-link">
+  Redis
+</a></li><li class="dropdown-item"><!----> <a href="/db/mongodb/0.html" class="nav-link">
+  MongoDB
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="vue" class="dropdown-title"><span class="title">vue</span> <span class="arrow down"></span></button> <button type="button" aria-label="vue" class="mobile-dropdown-title"><span class="title">vue</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/vue/common/0.html" class="nav-link">
+  vue 常见功能
+</a></li><li class="dropdown-item"><!----> <a href="/vue/v3/0.html" class="nav-link">
+  vue3
+</a></li></ul></div></div><div class="nav-item"><a href="/webpack/0.html" class="nav-link">
+  webpack
+</a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><a href="/node/blog/native/0" class="sidebar-heading clickable"><span>原生</span> <span class="arrow right"></span></a> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><a href="/node/blog/express/0" class="sidebar-heading clickable open"><span>express</span> <span class="arrow down"></span></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/node/blog/express/0.html" class="sidebar-link">开启 express</a></li><li><a href="/node/blog/express/1.html" class="sidebar-link">文件解析及路由新增测试</a></li><li><a href="/node/blog/express/2.html" class="sidebar-link">中间件</a></li><li><a href="/node/blog/express/3.html" class="sidebar-link">项目结构搭建</a></li><li><a href="/node/blog/express/4.html" class="sidebar-link">Blog 路由</a></li><li><a href="/node/blog/express/5.html" aria-current="page" class="active sidebar-link">express-session 与 Redis</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/node/blog/express/5.html#app-js-配置-session" class="sidebar-link">app.js 配置 session</a></li><li class="sidebar-sub-header"><a href="/node/blog/express/5.html#session-测试用例" class="sidebar-link">session 测试用例</a></li><li class="sidebar-sub-header"><a href="/node/blog/express/5.html#express-session-结合-redis" class="sidebar-link">express-session 结合 redis</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/node/blog/express/5.html#db-redis-js" class="sidebar-link">db/redis.js</a></li><li class="sidebar-sub-header"><a href="/node/blog/express/5.html#app-js" class="sidebar-link">app.js</a></li></ul></li></ul></li><li><a href="/node/blog/express/6.html" class="sidebar-link">User 路由</a></li><li><a href="/node/blog/express/7.html" class="sidebar-link">登录校验中间件</a></li><li><a href="/node/blog/express/8.html" class="sidebar-link">日志工具 morgan</a></li><li><a href="/node/blog/express/9.html" class="sidebar-link">express 中间件的实现</a></li></ul></section></li><li><section class="sidebar-group collapsable depth-0"><a href="/node/blog/koa/0" class="sidebar-heading clickable"><span>koa</span> <span class="arrow right"></span></a> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><a href="/node/blog/koa-mongodb/0" class="sidebar-heading clickable"><span>koa-mongodb</span> <span class="arrow right"></span></a> <!----></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="express-session-与-redis"><a href="#express-session-与-redis" class="header-anchor">#</a> express-session 与 Redis</h1> <div class="custom-block tip"><p class="custom-block-title">TIP</p> <p>安装依赖： yarn add express-session connect-redis -S</p></div> <ul><li><code>express-session</code> 是处理 cookie 和 session 的中间件 , 它会将 cookie 数据存储在 <code>req.session</code> 中</li> <li><code>connect-redis</code> 是将 <code>redis</code> 和 <code>express-session</code> 结合起来的工具</li></ul> <h2 id="app-js-配置-session"><a href="#app-js-配置-session" class="header-anchor">#</a> app.js 配置 session</h2> <p><code>express-session</code> 的设置，其实很多是 cookie 属性的设置。毕竟 session 和 cookie 基本属于同一种信息的不同端的称呼而已</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">const</span> expressSession <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">&quot;express-session&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token operator">...</span>其余代码后续完整版补充
+
+<span class="token comment">// session 与 cookie 的设置处理</span>
+<span class="token comment">// session 与 cookie 本身是同步的，所以 express-session中间件直接对两者进行了设置</span>
+<span class="token keyword">const</span> <span class="token punctuation">{</span> <span class="token constant">SECRET_KEY</span> <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">&quot;./config/global&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>
+  <span class="token function">expressSession</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    secret<span class="token operator">:</span> <span class="token constant">SECRET_KEY</span><span class="token punctuation">,</span> <span class="token comment">// 加密密匙</span>
+    saveUninitialized<span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span> <span class="token comment">// [必传] 是否强制将&quot;未初始化&quot;的会话保存起来</span>
+    resave<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span> <span class="token comment">// [必传] 请求期间未修改会话，是否也进行强制存储</span>
+    cookie<span class="token operator">:</span> <span class="token punctuation">{</span>
+      path<span class="token operator">:</span> <span class="token string">&quot;/&quot;</span><span class="token punctuation">,</span> <span class="token comment">// [默认 /] cookie 存储根目录</span>
+      httpOnly<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span> <span class="token comment">// [默认 true] 前端修改限制</span>
+      maxAge<span class="token operator">:</span> <span class="token number">24</span> <span class="token operator">*</span> <span class="token number">60</span> <span class="token operator">*</span> <span class="token number">60</span> <span class="token operator">*</span> <span class="token number">1000</span><span class="token punctuation">,</span> <span class="token comment">// 24小时时效</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token operator">...</span>其余代码后续完整版补充
+
+</code></pre></div><h2 id="session-测试用例"><a href="#session-测试用例" class="header-anchor">#</a> session 测试用例</h2> <p>可以在 <code>routes/user.js</code> 中添加下列路由信息，测试 session</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">// 测试 session 和 cookie</span>
+router<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">&quot;/test-session&quot;</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">req<span class="token punctuation">,</span> res<span class="token punctuation">,</span> next</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">&quot;req.session&quot;</span><span class="token punctuation">,</span> req<span class="token punctuation">.</span>session<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>req<span class="token punctuation">.</span>session<span class="token punctuation">.</span>view<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    req<span class="token punctuation">.</span>session<span class="token punctuation">.</span>view <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  req<span class="token punctuation">.</span>session<span class="token punctuation">.</span>view<span class="token operator">++</span><span class="token punctuation">;</span>
+
+  res<span class="token punctuation">.</span><span class="token function">json</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">SuccessModel</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">恭喜您第</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>req<span class="token punctuation">.</span>session<span class="token punctuation">.</span>view<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">访问</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><h2 id="express-session-结合-redis"><a href="#express-session-结合-redis" class="header-anchor">#</a> express-session 结合 redis</h2> <p>node 版本的 session 结合 redis 是自己组合存储和添加的逻辑，这里通过 <code>connect-redis</code>来处理，但是有一些需要调整的地方：</p> <h3 id="db-redis-js"><a href="#db-redis-js" class="header-anchor">#</a> db/redis.js</h3> <p><code>db/redis.js</code> 中只需要暴露出 redis 客户端即可</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">const</span> redis <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">&quot;redis&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> <span class="token constant">REDIS_CONF</span> <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">&quot;../config/redis&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> <span class="token punctuation">{</span> port<span class="token punctuation">,</span> host <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token constant">REDIS_CONF</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> redisClient <span class="token operator">=</span> redis<span class="token punctuation">.</span><span class="token function">createClient</span><span class="token punctuation">(</span>port<span class="token punctuation">,</span> host<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 监控错误</span>
+redisClient<span class="token punctuation">.</span><span class="token function">on</span><span class="token punctuation">(</span><span class="token string">&quot;error&quot;</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token string">&quot;Redis Client Error&quot;</span><span class="token punctuation">,</span> err<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+module<span class="token punctuation">.</span>exports <span class="token operator">=</span> redisClient<span class="token punctuation">;</span>
+</code></pre></div><h3 id="app-js"><a href="#app-js" class="header-anchor">#</a> app.js</h3> <p><code>app.js</code>中添加 express 与 redis 的结合</p> <div class="language-js extra-class"><div class="highlight-lines"><br><br><br><br><br><br><div class="highlighted"> </div><div class="highlighted"> </div><div class="highlighted"> </div><div class="highlighted"> </div><div class="highlighted"> </div><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><div class="highlighted"> </div><div class="highlighted"> </div><div class="highlighted"> </div><div class="highlighted"> </div><div class="highlighted"> </div><div class="highlighted"> </div><div class="highlighted"> </div><div class="highlighted"> </div><div class="highlighted"> </div><div class="highlighted"> </div><div class="highlighted"> </div><div class="highlighted"> </div><div class="highlighted"> </div><div class="highlighted"> </div><div class="highlighted"> </div><div class="highlighted"> </div><div class="highlighted"> </div><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br></div><pre class="language-js"><code><span class="token keyword">const</span> createError <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">&quot;http-errors&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> express <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">&quot;express&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> path <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">&quot;path&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> cookieParser <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">&quot;cookie-parser&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> logger <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">&quot;morgan&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 引入 session 中间件</span>
+<span class="token keyword">const</span> expressSession <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">&quot;express-session&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 引入 redis 中间件并关联 express-session</span>
+<span class="token keyword">const</span> RedisStore <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">&quot;connect-redis&quot;</span><span class="token punctuation">)</span><span class="token punctuation">(</span>expressSession<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> blogRouter <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">&quot;./routes/blog&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> userRouter <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">&quot;./routes/user&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> app <span class="token operator">=</span> <span class="token function">express</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span><span class="token function">logger</span><span class="token punctuation">(</span><span class="token string">&quot;dev&quot;</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 处理 post 请求的数据</span>
+<span class="token comment">// 用来解析 content-type=application 形式的数据，放到 req.body 中</span>
+app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>express<span class="token punctuation">.</span><span class="token function">json</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// post 请求中解析其余格式的数据解析放在 req.body 中</span>
+app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>express<span class="token punctuation">.</span><span class="token function">urlencoded</span><span class="token punctuation">(</span><span class="token punctuation">{</span> extended<span class="token operator">:</span> <span class="token boolean">false</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 解析 cookie</span>
+app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span><span class="token function">cookieParser</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// webServer 服务话，获取静态文件的操作处理</span>
+app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>express<span class="token punctuation">.</span><span class="token function">static</span><span class="token punctuation">(</span>path<span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span>__dirname<span class="token punctuation">,</span> <span class="token string">&quot;public&quot;</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// session 与 cookie 的设置处理</span>
+<span class="token comment">// session 与 cookie 本身是同步的，所以 express-session中间件直接对两者进行了设置</span>
+<span class="token keyword">const</span> redisClient <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">&quot;./db/redis&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> <span class="token punctuation">{</span> <span class="token constant">SECRET_KEY</span> <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">&quot;./config/global&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>
+  <span class="token function">expressSession</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    store<span class="token operator">:</span> <span class="token keyword">new</span> <span class="token class-name">RedisStore</span><span class="token punctuation">(</span><span class="token punctuation">{</span> client<span class="token operator">:</span> redisClient <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token comment">// [重点] 这里配置后存入 redis 中，否则默认存入内存中</span>
+    secret<span class="token operator">:</span> <span class="token constant">SECRET_KEY</span><span class="token punctuation">,</span> <span class="token comment">// 加密密匙</span>
+    saveUninitialized<span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span> <span class="token comment">// [必传] 是否强制将&quot;未初始化&quot;的会话保存起来</span>
+    resave<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span> <span class="token comment">// [必传] 请求期间未修改会话，是否也进行强制存储</span>
+    cookie<span class="token operator">:</span> <span class="token punctuation">{</span>
+      path<span class="token operator">:</span> <span class="token string">&quot;/&quot;</span><span class="token punctuation">,</span> <span class="token comment">// [默认 /] cookie 存储根目录</span>
+      httpOnly<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span> <span class="token comment">// [默认 true] 前端修改限制</span>
+      maxAge<span class="token operator">:</span> <span class="token number">24</span> <span class="token operator">*</span> <span class="token number">60</span> <span class="token operator">*</span> <span class="token number">60</span> <span class="token operator">*</span> <span class="token number">1000</span><span class="token punctuation">,</span> <span class="token comment">// 24小时时效</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 路由设置</span>
+app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span><span class="token string">&quot;/api/blog&quot;</span><span class="token punctuation">,</span> blogRouter<span class="token punctuation">)</span><span class="token punctuation">;</span>
+app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span><span class="token string">&quot;/api/user&quot;</span><span class="token punctuation">,</span> userRouter<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// catch 404 and forward to error handler</span>
+app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">req<span class="token punctuation">,</span> res<span class="token punctuation">,</span> next</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token function">next</span><span class="token punctuation">(</span><span class="token function">createError</span><span class="token punctuation">(</span><span class="token number">404</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// error handler</span>
+app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">err<span class="token punctuation">,</span> req<span class="token punctuation">,</span> res<span class="token punctuation">,</span> next</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">&quot;报错了&quot;</span><span class="token punctuation">,</span> err<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token comment">// set locals, only providing error in development</span>
+  res<span class="token punctuation">.</span>locals<span class="token punctuation">.</span>message <span class="token operator">=</span> err<span class="token punctuation">.</span>message<span class="token punctuation">;</span>
+  res<span class="token punctuation">.</span>locals<span class="token punctuation">.</span>error <span class="token operator">=</span> req<span class="token punctuation">.</span>app<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">&quot;env&quot;</span><span class="token punctuation">)</span> <span class="token operator">===</span> <span class="token string">&quot;dev&quot;</span> <span class="token operator">?</span> err <span class="token operator">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+  <span class="token comment">// render the error page</span>
+  res<span class="token punctuation">.</span><span class="token function">status</span><span class="token punctuation">(</span>err<span class="token punctuation">.</span>status <span class="token operator">||</span> <span class="token number">500</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  res<span class="token punctuation">.</span><span class="token function">json</span><span class="token punctuation">(</span>err<span class="token punctuation">.</span>status<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+module<span class="token punctuation">.</span>exports <span class="token operator">=</span> app<span class="token punctuation">;</span>
+</code></pre></div></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/node/blog/express/4.html" class="prev">
+        Blog 路由
+      </a></span> <span class="next"><a href="/node/blog/express/6.html">
+        User 路由
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.6bb415dc.js" defer></script><script src="/assets/js/2.b1641fc1.js" defer></script><script src="/assets/js/29.cb5c1fdb.js" defer></script>
+  </body>
+</html>

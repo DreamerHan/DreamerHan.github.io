@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Node 连接 Redis | 行也安然，坐也安然</title>
+    <meta name="generator" content="VuePress 1.8.2">
+    
+    <meta name="description" content="韩志臻的blog">
+    
+    <link rel="preload" href="/assets/css/0.styles.e4d8b86b.css" as="style"><link rel="preload" href="/assets/js/app.6bb415dc.js" as="script"><link rel="preload" href="/assets/js/2.b1641fc1.js" as="script"><link rel="preload" href="/assets/js/23.763a0156.js" as="script"><link rel="prefetch" href="/assets/js/10.b8677900.js"><link rel="prefetch" href="/assets/js/11.d34941f3.js"><link rel="prefetch" href="/assets/js/12.ac9671cb.js"><link rel="prefetch" href="/assets/js/13.ca7f4786.js"><link rel="prefetch" href="/assets/js/14.dad0bdf2.js"><link rel="prefetch" href="/assets/js/15.2d470cbd.js"><link rel="prefetch" href="/assets/js/16.70244129.js"><link rel="prefetch" href="/assets/js/17.d6da8b6a.js"><link rel="prefetch" href="/assets/js/18.f80ef0a0.js"><link rel="prefetch" href="/assets/js/19.5665b8f8.js"><link rel="prefetch" href="/assets/js/20.5d899f4e.js"><link rel="prefetch" href="/assets/js/21.dec5c18b.js"><link rel="prefetch" href="/assets/js/22.07477ce8.js"><link rel="prefetch" href="/assets/js/24.8068ebdd.js"><link rel="prefetch" href="/assets/js/25.bdc00b1e.js"><link rel="prefetch" href="/assets/js/26.91381f37.js"><link rel="prefetch" href="/assets/js/27.b3a5666f.js"><link rel="prefetch" href="/assets/js/28.01b2069f.js"><link rel="prefetch" href="/assets/js/29.cb5c1fdb.js"><link rel="prefetch" href="/assets/js/3.67cdd6aa.js"><link rel="prefetch" href="/assets/js/30.734fd3f3.js"><link rel="prefetch" href="/assets/js/31.e742bf15.js"><link rel="prefetch" href="/assets/js/32.79477bba.js"><link rel="prefetch" href="/assets/js/33.281f8716.js"><link rel="prefetch" href="/assets/js/34.a2b5d5db.js"><link rel="prefetch" href="/assets/js/35.57430e67.js"><link rel="prefetch" href="/assets/js/36.a17af7ae.js"><link rel="prefetch" href="/assets/js/37.74d8a630.js"><link rel="prefetch" href="/assets/js/38.f61159af.js"><link rel="prefetch" href="/assets/js/39.8293f0d8.js"><link rel="prefetch" href="/assets/js/4.9324647e.js"><link rel="prefetch" href="/assets/js/40.fdee6d10.js"><link rel="prefetch" href="/assets/js/41.4e46454f.js"><link rel="prefetch" href="/assets/js/42.39e5aa9c.js"><link rel="prefetch" href="/assets/js/43.9b6a1d38.js"><link rel="prefetch" href="/assets/js/44.f721397d.js"><link rel="prefetch" href="/assets/js/45.f260a340.js"><link rel="prefetch" href="/assets/js/46.3f8bda6e.js"><link rel="prefetch" href="/assets/js/47.1c6a2c6b.js"><link rel="prefetch" href="/assets/js/48.b5fd1887.js"><link rel="prefetch" href="/assets/js/49.61ceca93.js"><link rel="prefetch" href="/assets/js/5.06aedb8b.js"><link rel="prefetch" href="/assets/js/50.b9d2d960.js"><link rel="prefetch" href="/assets/js/51.b248dc3e.js"><link rel="prefetch" href="/assets/js/52.b28160f1.js"><link rel="prefetch" href="/assets/js/53.ef4d6663.js"><link rel="prefetch" href="/assets/js/54.e23082b7.js"><link rel="prefetch" href="/assets/js/55.98f30d84.js"><link rel="prefetch" href="/assets/js/56.35ef7fe9.js"><link rel="prefetch" href="/assets/js/57.9df1d918.js"><link rel="prefetch" href="/assets/js/58.96c0a782.js"><link rel="prefetch" href="/assets/js/59.d826b7ab.js"><link rel="prefetch" href="/assets/js/6.a6ffe0cf.js"><link rel="prefetch" href="/assets/js/60.b1ec97a4.js"><link rel="prefetch" href="/assets/js/61.671a28d8.js"><link rel="prefetch" href="/assets/js/62.7ecd8c0c.js"><link rel="prefetch" href="/assets/js/63.e81ff19a.js"><link rel="prefetch" href="/assets/js/64.b6f129ac.js"><link rel="prefetch" href="/assets/js/65.17d68b4e.js"><link rel="prefetch" href="/assets/js/66.d786af35.js"><link rel="prefetch" href="/assets/js/67.0501edaa.js"><link rel="prefetch" href="/assets/js/68.6a2bafd5.js"><link rel="prefetch" href="/assets/js/69.5e42c7de.js"><link rel="prefetch" href="/assets/js/7.59967bdb.js"><link rel="prefetch" href="/assets/js/8.28ba1509.js"><link rel="prefetch" href="/assets/js/9.d5a1b55c.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.e4d8b86b.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">行也安然，坐也安然</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">
+  首页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Node" class="dropdown-title"><span class="title">Node</span> <span class="arrow down"></span></button> <button type="button" aria-label="Node" class="mobile-dropdown-title"><span class="title">Node</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/node/pm2/1.html" class="nav-link">
+  pm2
+</a></li><li class="dropdown-item"><h4>
+          实战项目
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/node/blog/intro.html" class="nav-link">
+  博客
+</a></li><li class="dropdown-subitem"><a href="/node/blog/express/0.html" class="nav-link">
+  博客(express)
+</a></li><li class="dropdown-subitem"><a href="/node/blog/koa/0.html" class="nav-link">
+  博客(koa)
+</a></li><li class="dropdown-subitem"><a href="/node/blog/koa-mongodb/0.html" class="nav-link">
+  博客(koa-mongodb)
+</a></li><li class="dropdown-subitem"><a href="/node/cli/1.html" class="nav-link">
+  一个 cli
+</a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="数据存储" class="dropdown-title"><span class="title">数据存储</span> <span class="arrow down"></span></button> <button type="button" aria-label="数据存储" class="mobile-dropdown-title"><span class="title">数据存储</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/db/mysql/0.html" class="nav-link">
+  Mysql
+</a></li><li class="dropdown-item"><!----> <a href="/db/redis/0.html" class="nav-link">
+  Redis
+</a></li><li class="dropdown-item"><!----> <a href="/db/mongodb/0.html" class="nav-link">
+  MongoDB
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="vue" class="dropdown-title"><span class="title">vue</span> <span class="arrow down"></span></button> <button type="button" aria-label="vue" class="mobile-dropdown-title"><span class="title">vue</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/vue/common/0.html" class="nav-link">
+  vue 常见功能
+</a></li><li class="dropdown-item"><!----> <a href="/vue/v3/0.html" class="nav-link">
+  vue3
+</a></li></ul></div></div><div class="nav-item"><a href="/webpack/0.html" class="nav-link">
+  webpack
+</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">
+  首页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Node" class="dropdown-title"><span class="title">Node</span> <span class="arrow down"></span></button> <button type="button" aria-label="Node" class="mobile-dropdown-title"><span class="title">Node</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/node/pm2/1.html" class="nav-link">
+  pm2
+</a></li><li class="dropdown-item"><h4>
+          实战项目
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/node/blog/intro.html" class="nav-link">
+  博客
+</a></li><li class="dropdown-subitem"><a href="/node/blog/express/0.html" class="nav-link">
+  博客(express)
+</a></li><li class="dropdown-subitem"><a href="/node/blog/koa/0.html" class="nav-link">
+  博客(koa)
+</a></li><li class="dropdown-subitem"><a href="/node/blog/koa-mongodb/0.html" class="nav-link">
+  博客(koa-mongodb)
+</a></li><li class="dropdown-subitem"><a href="/node/cli/1.html" class="nav-link">
+  一个 cli
+</a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="数据存储" class="dropdown-title"><span class="title">数据存储</span> <span class="arrow down"></span></button> <button type="button" aria-label="数据存储" class="mobile-dropdown-title"><span class="title">数据存储</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/db/mysql/0.html" class="nav-link">
+  Mysql
+</a></li><li class="dropdown-item"><!----> <a href="/db/redis/0.html" class="nav-link">
+  Redis
+</a></li><li class="dropdown-item"><!----> <a href="/db/mongodb/0.html" class="nav-link">
+  MongoDB
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="vue" class="dropdown-title"><span class="title">vue</span> <span class="arrow down"></span></button> <button type="button" aria-label="vue" class="mobile-dropdown-title"><span class="title">vue</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/vue/common/0.html" class="nav-link">
+  vue 常见功能
+</a></li><li class="dropdown-item"><!----> <a href="/vue/v3/0.html" class="nav-link">
+  vue3
+</a></li></ul></div></div><div class="nav-item"><a href="/webpack/0.html" class="nav-link">
+  webpack
+</a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><a href="/db/mysql/0" class="sidebar-heading clickable"><span>mysql</span> <span class="arrow right"></span></a> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><a href="/db/redis/0" class="sidebar-heading clickable open"><span>redis</span> <span class="arrow down"></span></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/db/redis/0.html" class="sidebar-link">从 Cookie 说起</a></li><li><a href="/db/redis/1.html" class="sidebar-link">从 Cookie 到 Session</a></li><li><a href="/db/redis/2.html" class="sidebar-link">从 Session 到 Redis</a></li><li><a href="/db/redis/3.html" aria-current="page" class="active sidebar-link">Node 连接 Redis</a></li></ul></section></li><li><section class="sidebar-group collapsable depth-0"><a href="/db/mongodb/0" class="sidebar-heading clickable"><span>mongodb</span> <span class="arrow right"></span></a> <!----></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="node-连接-redis"><a href="#node-连接-redis" class="header-anchor">#</a> Node 连接 Redis</h1> <div class="custom-block tip"><p class="custom-block-title">TIP</p> <p>依赖安装：yarn add redis</p> <p>当前测试版本 4.0.1</p></div> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">const</span> redis <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">&quot;redis&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">/**  创建 redis 客户端
+ * @method createClient(param1, params2)
+ * @param1 port - 默认是6379
+ * @param2 host - 本地 127.0.0.1
+ */</span>
+<span class="token comment">// 创建 redis 客户端</span>
+<span class="token keyword">const</span> redisClient <span class="token operator">=</span> redis<span class="token punctuation">.</span><span class="token function">createClient</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">(</span><span class="token keyword">async</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token comment">// 监听错误</span>
+  redisClient<span class="token punctuation">.</span><span class="token function">on</span><span class="token punctuation">(</span><span class="token string">&quot;error&quot;</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token parameter">err</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token string">&quot;Redis Client Error&quot;</span><span class="token punctuation">,</span> err<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">await</span> redisClient<span class="token punctuation">.</span><span class="token function">connect</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token comment">// 存储</span>
+  <span class="token keyword">const</span> result <span class="token operator">=</span> <span class="token keyword">await</span> redisClient<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span><span class="token string">&quot;myname&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;hanzz&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">&quot;set&quot;</span><span class="token punctuation">,</span> result<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// set OK</span>
+
+  <span class="token comment">// 获取</span>
+  <span class="token keyword">const</span> value <span class="token operator">=</span> <span class="token keyword">await</span> redisClient<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">&quot;myname&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">&quot;get&quot;</span><span class="token punctuation">,</span> value<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// get hanzz</span>
+
+  <span class="token comment">// 退出</span>
+  redisClient<span class="token punctuation">.</span><span class="token function">quit</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/db/redis/2.html" class="prev">
+        从 Session 到 Redis
+      </a></span> <span class="next"><a href="/db/mongodb/0.html">
+        Mongodb 简略
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.6bb415dc.js" defer></script><script src="/assets/js/2.b1641fc1.js" defer></script><script src="/assets/js/23.763a0156.js" defer></script>
+  </body>
+</html>
