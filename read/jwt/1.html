@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>在 Node 中使用 JWT | 行也安然，坐也安然</title>
+    <meta name="generator" content="VuePress 1.8.2">
+    
+    <meta name="description" content="韩志臻的blog">
+    
+    <link rel="preload" href="/assets/css/0.styles.35bcedcf.css" as="style"><link rel="preload" href="/assets/js/app.9aa985d9.js" as="script"><link rel="preload" href="/assets/js/2.c20a4678.js" as="script"><link rel="preload" href="/assets/js/84.54029606.js" as="script"><link rel="prefetch" href="/assets/js/10.796d1caf.js"><link rel="prefetch" href="/assets/js/11.44847b68.js"><link rel="prefetch" href="/assets/js/12.51dfd920.js"><link rel="prefetch" href="/assets/js/13.0c99a83c.js"><link rel="prefetch" href="/assets/js/14.781deda2.js"><link rel="prefetch" href="/assets/js/15.acf6aadb.js"><link rel="prefetch" href="/assets/js/16.60b3716b.js"><link rel="prefetch" href="/assets/js/17.2f9e4adc.js"><link rel="prefetch" href="/assets/js/18.fbc4c29d.js"><link rel="prefetch" href="/assets/js/19.735dbfd1.js"><link rel="prefetch" href="/assets/js/20.cf5c655e.js"><link rel="prefetch" href="/assets/js/21.16baed75.js"><link rel="prefetch" href="/assets/js/22.c1369f9a.js"><link rel="prefetch" href="/assets/js/23.df513303.js"><link rel="prefetch" href="/assets/js/24.fc57977c.js"><link rel="prefetch" href="/assets/js/25.7212cdbf.js"><link rel="prefetch" href="/assets/js/26.d24423fb.js"><link rel="prefetch" href="/assets/js/27.933484b9.js"><link rel="prefetch" href="/assets/js/28.81cc31a7.js"><link rel="prefetch" href="/assets/js/29.1fd7112d.js"><link rel="prefetch" href="/assets/js/3.b23c22d1.js"><link rel="prefetch" href="/assets/js/30.3ad1c05f.js"><link rel="prefetch" href="/assets/js/31.29f86689.js"><link rel="prefetch" href="/assets/js/32.91c73dfc.js"><link rel="prefetch" href="/assets/js/33.5a6acd43.js"><link rel="prefetch" href="/assets/js/34.9f07dad5.js"><link rel="prefetch" href="/assets/js/35.10b561bd.js"><link rel="prefetch" href="/assets/js/36.e2686697.js"><link rel="prefetch" href="/assets/js/37.0a878d56.js"><link rel="prefetch" href="/assets/js/38.3946a52f.js"><link rel="prefetch" href="/assets/js/39.670e285c.js"><link rel="prefetch" href="/assets/js/4.3a1e43d4.js"><link rel="prefetch" href="/assets/js/40.ee8ad346.js"><link rel="prefetch" href="/assets/js/41.13014b4a.js"><link rel="prefetch" href="/assets/js/42.cebb072e.js"><link rel="prefetch" href="/assets/js/43.ba5fafb9.js"><link rel="prefetch" href="/assets/js/44.2db00478.js"><link rel="prefetch" href="/assets/js/45.7d2cebec.js"><link rel="prefetch" href="/assets/js/46.319d2961.js"><link rel="prefetch" href="/assets/js/47.ba5f2cd8.js"><link rel="prefetch" href="/assets/js/48.7172649c.js"><link rel="prefetch" href="/assets/js/49.939f48b9.js"><link rel="prefetch" href="/assets/js/5.ab2dc123.js"><link rel="prefetch" href="/assets/js/50.5fe1a735.js"><link rel="prefetch" href="/assets/js/51.25166367.js"><link rel="prefetch" href="/assets/js/52.be61dad5.js"><link rel="prefetch" href="/assets/js/53.7e58dfff.js"><link rel="prefetch" href="/assets/js/54.7344405c.js"><link rel="prefetch" href="/assets/js/55.fbadf19e.js"><link rel="prefetch" href="/assets/js/56.853f2071.js"><link rel="prefetch" href="/assets/js/57.0815754b.js"><link rel="prefetch" href="/assets/js/58.24512565.js"><link rel="prefetch" href="/assets/js/59.90175896.js"><link rel="prefetch" href="/assets/js/6.96634693.js"><link rel="prefetch" href="/assets/js/60.af28a865.js"><link rel="prefetch" href="/assets/js/61.2d318f71.js"><link rel="prefetch" href="/assets/js/62.de40097c.js"><link rel="prefetch" href="/assets/js/63.3f11df6f.js"><link rel="prefetch" href="/assets/js/64.c1aeb6dd.js"><link rel="prefetch" href="/assets/js/65.2016ac34.js"><link rel="prefetch" href="/assets/js/66.d4054f4f.js"><link rel="prefetch" href="/assets/js/67.f78dae40.js"><link rel="prefetch" href="/assets/js/68.82e53c49.js"><link rel="prefetch" href="/assets/js/69.90990f54.js"><link rel="prefetch" href="/assets/js/7.cef7913e.js"><link rel="prefetch" href="/assets/js/70.46cbfc3c.js"><link rel="prefetch" href="/assets/js/71.0996fc84.js"><link rel="prefetch" href="/assets/js/72.f79c1710.js"><link rel="prefetch" href="/assets/js/73.c7242cab.js"><link rel="prefetch" href="/assets/js/74.58ebdd7f.js"><link rel="prefetch" href="/assets/js/75.87d8918f.js"><link rel="prefetch" href="/assets/js/76.af709c7b.js"><link rel="prefetch" href="/assets/js/77.3f38d7d4.js"><link rel="prefetch" href="/assets/js/78.e43e7250.js"><link rel="prefetch" href="/assets/js/79.ca0eec3f.js"><link rel="prefetch" href="/assets/js/8.e509b82c.js"><link rel="prefetch" href="/assets/js/80.8f50b773.js"><link rel="prefetch" href="/assets/js/81.21db02ab.js"><link rel="prefetch" href="/assets/js/82.5bd66184.js"><link rel="prefetch" href="/assets/js/83.98663cb7.js"><link rel="prefetch" href="/assets/js/85.73ab9080.js"><link rel="prefetch" href="/assets/js/86.38a2103d.js"><link rel="prefetch" href="/assets/js/87.ee8c8faa.js"><link rel="prefetch" href="/assets/js/88.a020b348.js"><link rel="prefetch" href="/assets/js/89.215811da.js"><link rel="prefetch" href="/assets/js/9.f7629756.js"><link rel="prefetch" href="/assets/js/90.87fd0ba5.js"><link rel="prefetch" href="/assets/js/91.4fb7b67a.js"><link rel="prefetch" href="/assets/js/92.280ae9b8.js"><link rel="prefetch" href="/assets/js/93.ce959314.js"><link rel="prefetch" href="/assets/js/94.2e3e7b60.js"><link rel="prefetch" href="/assets/js/95.0434590e.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.35bcedcf.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">行也安然，坐也安然</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="数据存储" class="dropdown-title"><span class="title">数据存储</span> <span class="arrow down"></span></button> <button type="button" aria-label="数据存储" class="mobile-dropdown-title"><span class="title">数据存储</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/db/mysql/0.html" class="nav-link">
+  Mysql
+</a></li><li class="dropdown-item"><!----> <a href="/db/redis/0.html" class="nav-link">
+  Redis
+</a></li><li class="dropdown-item"><!----> <a href="/db/mongodb/0.html" class="nav-link">
+  MongoDB
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="vue" class="dropdown-title"><span class="title">vue</span> <span class="arrow down"></span></button> <button type="button" aria-label="vue" class="mobile-dropdown-title"><span class="title">vue</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/vue/common/0.html" class="nav-link">
+  vue 常见功能
+</a></li><li class="dropdown-item"><!----> <a href="/vue/v3/0.html" class="nav-link">
+  一个项目的搭建
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="webpack" class="dropdown-title"><span class="title">webpack</span> <span class="arrow down"></span></button> <button type="button" aria-label="webpack" class="mobile-dropdown-title"><span class="title">webpack</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/webpack/record/0.html" class="nav-link">
+  记录
+</a></li><li class="dropdown-item"><!----> <a href="/webpack/practice/0.html" class="nav-link">
+  实践
+</a></li></ul></div></div><div class="nav-item"><a href="/read/jwt/0.html" class="nav-link">
+  Reading
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="其他" class="dropdown-title"><span class="title">其他</span> <span class="arrow down"></span></button> <button type="button" aria-label="其他" class="mobile-dropdown-title"><span class="title">其他</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>
+          NPM包使用记录
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/projects/npm/log4js.html" class="nav-link">
+  Log4js
+</a></li><li class="dropdown-subitem"><a href="/projects/npm/markmap.html" class="nav-link">
+  Markmap.js
+</a></li><li class="dropdown-subitem"><a href="/projects/npm/react-pdf.html" class="nav-link">
+  React-pdf
+</a></li></ul></li><li class="dropdown-item"><h4>
+          项目记录
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/projects/blog/intro.html" class="nav-link">
+  博客
+</a></li><li class="dropdown-subitem"><a href="/projects/blog/express/0.html" class="nav-link">
+  博客(express)
+</a></li><li class="dropdown-subitem"><a href="/projects/blog/koa/0.html" class="nav-link">
+  博客(koa)
+</a></li><li class="dropdown-subitem"><a href="/projects/blog/koa-mongodb/0.html" class="nav-link">
+  博客(koa-mongodb)
+</a></li></ul></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="数据存储" class="dropdown-title"><span class="title">数据存储</span> <span class="arrow down"></span></button> <button type="button" aria-label="数据存储" class="mobile-dropdown-title"><span class="title">数据存储</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/db/mysql/0.html" class="nav-link">
+  Mysql
+</a></li><li class="dropdown-item"><!----> <a href="/db/redis/0.html" class="nav-link">
+  Redis
+</a></li><li class="dropdown-item"><!----> <a href="/db/mongodb/0.html" class="nav-link">
+  MongoDB
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="vue" class="dropdown-title"><span class="title">vue</span> <span class="arrow down"></span></button> <button type="button" aria-label="vue" class="mobile-dropdown-title"><span class="title">vue</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/vue/common/0.html" class="nav-link">
+  vue 常见功能
+</a></li><li class="dropdown-item"><!----> <a href="/vue/v3/0.html" class="nav-link">
+  一个项目的搭建
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="webpack" class="dropdown-title"><span class="title">webpack</span> <span class="arrow down"></span></button> <button type="button" aria-label="webpack" class="mobile-dropdown-title"><span class="title">webpack</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/webpack/record/0.html" class="nav-link">
+  记录
+</a></li><li class="dropdown-item"><!----> <a href="/webpack/practice/0.html" class="nav-link">
+  实践
+</a></li></ul></div></div><div class="nav-item"><a href="/read/jwt/0.html" class="nav-link">
+  Reading
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="其他" class="dropdown-title"><span class="title">其他</span> <span class="arrow down"></span></button> <button type="button" aria-label="其他" class="mobile-dropdown-title"><span class="title">其他</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>
+          NPM包使用记录
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/projects/npm/log4js.html" class="nav-link">
+  Log4js
+</a></li><li class="dropdown-subitem"><a href="/projects/npm/markmap.html" class="nav-link">
+  Markmap.js
+</a></li><li class="dropdown-subitem"><a href="/projects/npm/react-pdf.html" class="nav-link">
+  React-pdf
+</a></li></ul></li><li class="dropdown-item"><h4>
+          项目记录
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/projects/blog/intro.html" class="nav-link">
+  博客
+</a></li><li class="dropdown-subitem"><a href="/projects/blog/express/0.html" class="nav-link">
+  博客(express)
+</a></li><li class="dropdown-subitem"><a href="/projects/blog/koa/0.html" class="nav-link">
+  博客(koa)
+</a></li><li class="dropdown-subitem"><a href="/projects/blog/koa-mongodb/0.html" class="nav-link">
+  博客(koa-mongodb)
+</a></li></ul></li></ul></div></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><a href="/read/jwt/0" class="sidebar-heading clickable open"><span>JWT</span> <span class="arrow down"></span></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/read/jwt/0.html" class="sidebar-link">JWT 疑惑记录</a></li><li><a href="/read/jwt/1.html" aria-current="page" class="active sidebar-link">在 Node 中使用 JWT</a></li></ul></section></li><li><section class="sidebar-group collapsable depth-0"><a href="/read/pm2/1" class="sidebar-heading clickable"><span>pm2</span> <span class="arrow right"></span></a> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><a href="/read/browser/0" class="sidebar-heading clickable"><span>浏览器API</span> <span class="arrow right"></span></a> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><a href="/read/chao/0" class="sidebar-heading clickable"><span>琐碎留痕</span> <span class="arrow right"></span></a> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><a href="/read/book/0" class="sidebar-heading clickable"><span>读书笔记</span> <span class="arrow right"></span></a> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><a href="/read/js/0" class="sidebar-heading clickable"><span>JS知识点</span> <span class="arrow right"></span></a> <!----></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="在-node-中使用-jwt"><a href="#在-node-中使用-jwt" class="header-anchor">#</a> 在 Node 中使用 JWT</h1> <h4 id="相关依赖"><a href="#相关依赖" class="header-anchor">#</a> 相关依赖</h4> <p>node 使用 JWT 可以使用两个现成的库</p> <ul><li><font size="5" color="red">jsonwebtoken</font> 用来生成 token 的</li> <li><font size="5" color="red">koa-jwt</font> 用来验证 token 是否还合法（是否过期了，是否是伪造的）</li></ul> <h4 id="示例代码"><a href="#示例代码" class="header-anchor">#</a> 示例代码</h4> <p>使用代码如下：</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">const</span> Koa <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">&quot;koa&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> app <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Koa</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> router <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">&quot;koa-router&quot;</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> jsonWebToken <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">&quot;jsonwebtoken&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> koaJWT <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">&quot;koa-jwt&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> secret <span class="token operator">=</span> <span class="token string">&quot;asecretkey&quot;</span><span class="token punctuation">;</span>
+
+<span class="token comment">// jwt 校验报错拦截</span>
+app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span><span class="token keyword">async</span> <span class="token punctuation">(</span><span class="token parameter">ctx<span class="token punctuation">,</span> next</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">await</span> <span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">catch</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">err</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>err<span class="token punctuation">.</span>status <span class="token operator">==</span> <span class="token string">&quot;401&quot;</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      ctx<span class="token punctuation">.</span>status <span class="token operator">=</span> <span class="token number">200</span><span class="token punctuation">;</span> <span class="token comment">// 这个200是保证浏览器响应成功</span>
+      ctx<span class="token punctuation">.</span>body <span class="token operator">=</span> <span class="token punctuation">{</span>
+        msg<span class="token operator">:</span> <span class="token string">&quot;Token认证失败&quot;</span><span class="token punctuation">,</span>
+        code<span class="token operator">:</span> <span class="token number">500001</span><span class="token punctuation">,</span>
+        data<span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+      <span class="token keyword">throw</span> err<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 这里解析 jwt 是否合法</span>
+app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>
+  <span class="token function">koaJWT</span><span class="token punctuation">(</span><span class="token punctuation">{</span> secret<span class="token operator">:</span> secret <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">unless</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    path<span class="token operator">:</span> <span class="token string">&quot;/login&quot;</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 登录</span>
+router<span class="token punctuation">.</span><span class="token function">post</span><span class="token punctuation">(</span><span class="token string">&quot;/login&quot;</span><span class="token punctuation">,</span> <span class="token keyword">async</span> <span class="token punctuation">(</span><span class="token parameter">ctx</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> <span class="token punctuation">{</span> username<span class="token punctuation">,</span> password <span class="token punctuation">}</span> <span class="token operator">=</span> ctx<span class="token punctuation">.</span>request<span class="token punctuation">.</span>body<span class="token punctuation">;</span>
+
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>username <span class="token operator">||</span> <span class="token operator">!</span>password<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    ctx<span class="token punctuation">.</span>body <span class="token operator">=</span> <span class="token punctuation">{</span>
+      msg<span class="token operator">:</span> <span class="token string">&quot;用户名或密码不正确&quot;</span><span class="token punctuation">,</span>
+      code<span class="token operator">:</span> <span class="token string">&quot;40001&quot;</span><span class="token punctuation">,</span>
+      data<span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">const</span> token <span class="token operator">=</span> jsonWebToken<span class="token punctuation">.</span><span class="token function">sign</span><span class="token punctuation">(</span>
+    <span class="token punctuation">{</span> username<span class="token punctuation">,</span> password <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    secret<span class="token punctuation">,</span> <span class="token comment">// 密钥</span>
+    <span class="token punctuation">{</span> expiresIn<span class="token operator">:</span> <span class="token number">60</span> <span class="token punctuation">}</span> <span class="token comment">// 过期时间 60s</span>
+  <span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  ctx<span class="token punctuation">.</span>body <span class="token operator">=</span> <span class="token punctuation">{</span>
+    msg<span class="token operator">:</span> <span class="token string">&quot;登录成功&quot;</span><span class="token punctuation">,</span>
+    code<span class="token operator">:</span> <span class="token number">200</span><span class="token punctuation">,</span>
+    data<span class="token operator">:</span> <span class="token punctuation">{</span> userid<span class="token operator">:</span> <span class="token string">&quot;12345678&quot;</span><span class="token punctuation">,</span> token <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 验证 token</span>
+router<span class="token punctuation">.</span><span class="token function">post</span><span class="token punctuation">(</span><span class="token string">&quot;/login-test&quot;</span><span class="token punctuation">,</span> <span class="token keyword">async</span> <span class="token punctuation">(</span><span class="token parameter">ctx</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  ctx<span class="token punctuation">.</span>body <span class="token operator">=</span> <span class="token string">&quot;Login Test OK&quot;</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>router<span class="token punctuation">.</span><span class="token function">routes</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> router<span class="token punctuation">.</span><span class="token function">allowedMethods</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+app<span class="token punctuation">.</span><span class="token function">listen</span><span class="token punctuation">(</span><span class="token number">3002</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">&quot;koa run at 3002&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><h4 id="验证注意"><a href="#验证注意" class="header-anchor">#</a> 验证注意</h4> <ol><li>使用 postman 验证效果即可</li> <li>登录生成 token 没有什么注意点，post 请求，正常传参即可</li> <li>验证 <code>login-test</code> 接口时需要注意，token 的认证需要在 header 中配置 token 信息，配置形式是 <code>Bearer token值</code>，不要忘了 Bearer 前缀。</li></ol> <h4 id="当前依赖版本展示"><a href="#当前依赖版本展示" class="header-anchor">#</a> 当前依赖版本展示</h4> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+  <span class="token property">&quot;jsonwebtoken&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^9.0.0&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;koa&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^2.14.1&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;koa-jwt&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^4.0.3&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;koa-router&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^12.0.0&quot;</span>
+<span class="token punctuation">}</span>
+</code></pre></div></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/read/jwt/0.html" class="prev">
+        JWT 疑惑记录
+      </a></span> <span class="next"><a href="/read/pm2/1.html">
+        常用指令
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.9aa985d9.js" defer></script><script src="/assets/js/2.c20a4678.js" defer></script><script src="/assets/js/84.54029606.js" defer></script>
+  </body>
+</html>
