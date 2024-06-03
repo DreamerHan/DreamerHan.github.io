@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Git 提交规范 | 行也安然，坐也安然</title>
+    <meta name="generator" content="VuePress 1.8.2">
+    
+    <meta name="description" content="韩志臻的blog">
+    
+    <link rel="preload" href="/assets/css/0.styles.e4d8b86b.css" as="style"><link rel="preload" href="/assets/js/app.a86fb578.js" as="script"><link rel="preload" href="/assets/js/2.f4c76e8f.js" as="script"><link rel="preload" href="/assets/js/12.f35e3c14.js" as="script"><link rel="prefetch" href="/assets/js/10.c61de724.js"><link rel="prefetch" href="/assets/js/100.4d2d0254.js"><link rel="prefetch" href="/assets/js/11.5946abfa.js"><link rel="prefetch" href="/assets/js/13.b07a3d91.js"><link rel="prefetch" href="/assets/js/14.bce4ea6a.js"><link rel="prefetch" href="/assets/js/15.22ab3510.js"><link rel="prefetch" href="/assets/js/16.532528f4.js"><link rel="prefetch" href="/assets/js/17.6547aa4e.js"><link rel="prefetch" href="/assets/js/18.fccb4247.js"><link rel="prefetch" href="/assets/js/19.cf7baf86.js"><link rel="prefetch" href="/assets/js/20.80bddd98.js"><link rel="prefetch" href="/assets/js/21.9dd6f94b.js"><link rel="prefetch" href="/assets/js/22.df40fa6b.js"><link rel="prefetch" href="/assets/js/23.d381164b.js"><link rel="prefetch" href="/assets/js/24.23eccce1.js"><link rel="prefetch" href="/assets/js/25.675a5dd3.js"><link rel="prefetch" href="/assets/js/26.134e7b03.js"><link rel="prefetch" href="/assets/js/27.44100860.js"><link rel="prefetch" href="/assets/js/28.51c5575c.js"><link rel="prefetch" href="/assets/js/29.2bb6682f.js"><link rel="prefetch" href="/assets/js/3.dc71286f.js"><link rel="prefetch" href="/assets/js/30.675b9b1e.js"><link rel="prefetch" href="/assets/js/31.12bfff40.js"><link rel="prefetch" href="/assets/js/32.c6ed9587.js"><link rel="prefetch" href="/assets/js/33.5dd439a5.js"><link rel="prefetch" href="/assets/js/34.0d93fa0b.js"><link rel="prefetch" href="/assets/js/35.f16b6751.js"><link rel="prefetch" href="/assets/js/36.84da4777.js"><link rel="prefetch" href="/assets/js/37.f584e26a.js"><link rel="prefetch" href="/assets/js/38.22809fd4.js"><link rel="prefetch" href="/assets/js/39.87565ecd.js"><link rel="prefetch" href="/assets/js/4.03ca31d0.js"><link rel="prefetch" href="/assets/js/40.99aa2710.js"><link rel="prefetch" href="/assets/js/41.ffdc7e56.js"><link rel="prefetch" href="/assets/js/42.c8035223.js"><link rel="prefetch" href="/assets/js/43.e2214561.js"><link rel="prefetch" href="/assets/js/44.0451c7eb.js"><link rel="prefetch" href="/assets/js/45.c7c5d317.js"><link rel="prefetch" href="/assets/js/46.c515681e.js"><link rel="prefetch" href="/assets/js/47.a8782c24.js"><link rel="prefetch" href="/assets/js/48.8f8216de.js"><link rel="prefetch" href="/assets/js/49.c62cf464.js"><link rel="prefetch" href="/assets/js/5.7803e6c7.js"><link rel="prefetch" href="/assets/js/50.d368641c.js"><link rel="prefetch" href="/assets/js/51.2d563851.js"><link rel="prefetch" href="/assets/js/52.cd107f70.js"><link rel="prefetch" href="/assets/js/53.947bfe0c.js"><link rel="prefetch" href="/assets/js/54.3fd47ce6.js"><link rel="prefetch" href="/assets/js/55.54035b51.js"><link rel="prefetch" href="/assets/js/56.4b338e06.js"><link rel="prefetch" href="/assets/js/57.3dc90d2d.js"><link rel="prefetch" href="/assets/js/58.d8c80a8c.js"><link rel="prefetch" href="/assets/js/59.3ba9b603.js"><link rel="prefetch" href="/assets/js/6.67d8c318.js"><link rel="prefetch" href="/assets/js/60.7de94339.js"><link rel="prefetch" href="/assets/js/61.17ac02b3.js"><link rel="prefetch" href="/assets/js/62.34d201e5.js"><link rel="prefetch" href="/assets/js/63.44d78f9a.js"><link rel="prefetch" href="/assets/js/64.b6341398.js"><link rel="prefetch" href="/assets/js/65.74297b02.js"><link rel="prefetch" href="/assets/js/66.e27db92d.js"><link rel="prefetch" href="/assets/js/67.08815a96.js"><link rel="prefetch" href="/assets/js/68.ab305a80.js"><link rel="prefetch" href="/assets/js/69.244199d4.js"><link rel="prefetch" href="/assets/js/7.6ef23db2.js"><link rel="prefetch" href="/assets/js/70.16c8374a.js"><link rel="prefetch" href="/assets/js/71.32994fc5.js"><link rel="prefetch" href="/assets/js/72.cd5e5614.js"><link rel="prefetch" href="/assets/js/73.95a35acc.js"><link rel="prefetch" href="/assets/js/74.45311324.js"><link rel="prefetch" href="/assets/js/75.5bcdecc4.js"><link rel="prefetch" href="/assets/js/76.524ebead.js"><link rel="prefetch" href="/assets/js/77.b68128ca.js"><link rel="prefetch" href="/assets/js/78.24beb1ca.js"><link rel="prefetch" href="/assets/js/79.086f08d5.js"><link rel="prefetch" href="/assets/js/8.46452597.js"><link rel="prefetch" href="/assets/js/80.05f17557.js"><link rel="prefetch" href="/assets/js/81.892e81b9.js"><link rel="prefetch" href="/assets/js/82.6eed85e0.js"><link rel="prefetch" href="/assets/js/83.55540564.js"><link rel="prefetch" href="/assets/js/84.df22c114.js"><link rel="prefetch" href="/assets/js/85.082bbedf.js"><link rel="prefetch" href="/assets/js/86.7d3cb835.js"><link rel="prefetch" href="/assets/js/87.53fbac2b.js"><link rel="prefetch" href="/assets/js/88.01455844.js"><link rel="prefetch" href="/assets/js/89.f86e57f5.js"><link rel="prefetch" href="/assets/js/9.ef8fa7e5.js"><link rel="prefetch" href="/assets/js/90.923a5b8a.js"><link rel="prefetch" href="/assets/js/91.7a019c2a.js"><link rel="prefetch" href="/assets/js/92.397eea0f.js"><link rel="prefetch" href="/assets/js/93.059d7112.js"><link rel="prefetch" href="/assets/js/94.84e5aa9d.js"><link rel="prefetch" href="/assets/js/95.0f3904d2.js"><link rel="prefetch" href="/assets/js/96.05b74007.js"><link rel="prefetch" href="/assets/js/97.fab30f76.js"><link rel="prefetch" href="/assets/js/98.fe86df06.js"><link rel="prefetch" href="/assets/js/99.68d7a172.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.e4d8b86b.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">行也安然，坐也安然</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="数据存储" class="dropdown-title"><span class="title">数据存储</span> <span class="arrow down"></span></button> <button type="button" aria-label="数据存储" class="mobile-dropdown-title"><span class="title">数据存储</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/db/mysql/0.html" class="nav-link">
+  Mysql
+</a></li><li class="dropdown-item"><!----> <a href="/db/redis/0.html" class="nav-link">
+  Redis
+</a></li><li class="dropdown-item"><!----> <a href="/db/mongodb/0.html" class="nav-link">
+  MongoDB
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="vue" class="dropdown-title"><span class="title">vue</span> <span class="arrow down"></span></button> <button type="button" aria-label="vue" class="mobile-dropdown-title"><span class="title">vue</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/vue/common/0.html" class="nav-link">
+  vue 常见功能
+</a></li><li class="dropdown-item"><!----> <a href="/vue/v3/0.html" class="nav-link">
+  一个项目的搭建
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="webpack" class="dropdown-title"><span class="title">webpack</span> <span class="arrow down"></span></button> <button type="button" aria-label="webpack" class="mobile-dropdown-title"><span class="title">webpack</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/webpack/record/0.html" class="nav-link">
+  记录
+</a></li><li class="dropdown-item"><!----> <a href="/webpack/practice/0.html" class="nav-link">
+  实践
+</a></li></ul></div></div><div class="nav-item"><a href="/read/jwt/0.html" class="nav-link">
+  Reading
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="其他" class="dropdown-title"><span class="title">其他</span> <span class="arrow down"></span></button> <button type="button" aria-label="其他" class="mobile-dropdown-title"><span class="title">其他</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>
+          NPM包使用记录
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/projects/npm/log4js.html" class="nav-link">
+  Log4js
+</a></li><li class="dropdown-subitem"><a href="/projects/npm/markmap.html" class="nav-link">
+  Markmap.js
+</a></li><li class="dropdown-subitem"><a href="/projects/npm/react-pdf.html" class="nav-link">
+  React-pdf
+</a></li></ul></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="数据存储" class="dropdown-title"><span class="title">数据存储</span> <span class="arrow down"></span></button> <button type="button" aria-label="数据存储" class="mobile-dropdown-title"><span class="title">数据存储</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/db/mysql/0.html" class="nav-link">
+  Mysql
+</a></li><li class="dropdown-item"><!----> <a href="/db/redis/0.html" class="nav-link">
+  Redis
+</a></li><li class="dropdown-item"><!----> <a href="/db/mongodb/0.html" class="nav-link">
+  MongoDB
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="vue" class="dropdown-title"><span class="title">vue</span> <span class="arrow down"></span></button> <button type="button" aria-label="vue" class="mobile-dropdown-title"><span class="title">vue</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/vue/common/0.html" class="nav-link">
+  vue 常见功能
+</a></li><li class="dropdown-item"><!----> <a href="/vue/v3/0.html" class="nav-link">
+  一个项目的搭建
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="webpack" class="dropdown-title"><span class="title">webpack</span> <span class="arrow down"></span></button> <button type="button" aria-label="webpack" class="mobile-dropdown-title"><span class="title">webpack</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/webpack/record/0.html" class="nav-link">
+  记录
+</a></li><li class="dropdown-item"><!----> <a href="/webpack/practice/0.html" class="nav-link">
+  实践
+</a></li></ul></div></div><div class="nav-item"><a href="/read/jwt/0.html" class="nav-link">
+  Reading
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="其他" class="dropdown-title"><span class="title">其他</span> <span class="arrow down"></span></button> <button type="button" aria-label="其他" class="mobile-dropdown-title"><span class="title">其他</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>
+          NPM包使用记录
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/projects/npm/log4js.html" class="nav-link">
+  Log4js
+</a></li><li class="dropdown-subitem"><a href="/projects/npm/markmap.html" class="nav-link">
+  Markmap.js
+</a></li><li class="dropdown-subitem"><a href="/projects/npm/react-pdf.html" class="nav-link">
+  React-pdf
+</a></li></ul></li></ul></div></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><a href="/vue/v3/0" class="sidebar-heading clickable open"><span>Vue3项目的搭建</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/vue/v3/0.html" class="sidebar-link">项目初始化</a></li><li><a href="/vue/v3/1.html" class="sidebar-link">校验格式化工具</a></li><li><a href="/vue/v3/2.html" aria-current="page" class="active sidebar-link">Git 提交规范</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/vue/v3/2.html#约定式提交规范" class="sidebar-link">约定式提交规范</a></li><li class="sidebar-sub-header"><a href="/vue/v3/2.html#commitizen" class="sidebar-link">commitizen</a></li><li class="sidebar-sub-header"><a href="/vue/v3/2.html#git-hooks" class="sidebar-link">Git Hooks</a></li><li class="sidebar-sub-header"><a href="/vue/v3/2.html#husky-与-commitlint" class="sidebar-link">husky 与 commitlint</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/vue/v3/2.html#安装-commitlint" class="sidebar-link">安装 commitlint</a></li><li class="sidebar-sub-header"><a href="/vue/v3/2.html#commitlint-config-js-配置" class="sidebar-link">commitlint.config.js 配置</a></li><li class="sidebar-sub-header"><a href="/vue/v3/2.html#安装-husky" class="sidebar-link">安装 husky</a></li><li class="sidebar-sub-header"><a href="/vue/v3/2.html#配置" class="sidebar-link">配置</a></li><li class="sidebar-sub-header"><a href="/vue/v3/2.html#package-json" class="sidebar-link">package.json</a></li></ul></li><li class="sidebar-sub-header"><a href="/vue/v3/2.html#husky-配合-eslint" class="sidebar-link">husky 配合 Eslint</a></li><li class="sidebar-sub-header"><a href="/vue/v3/2.html#lint-staged-自动修复错误" class="sidebar-link">lint-staged 自动修复错误</a></li><li class="sidebar-sub-header"><a href="/vue/v3/2.html#最后的-package-json" class="sidebar-link">最后的 package.json</a></li></ul></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="git-提交规范"><a href="#git-提交规范" class="header-anchor">#</a> Git 提交规范</h1> <h2 id="约定式提交规范"><a href="#约定式提交规范" class="header-anchor">#</a> 约定式提交规范</h2> <p>参考 <a href="https://www.conventionalcommits.org/zh-hans/v1.0.0/" target="_blank" rel="noopener noreferrer">约定式提交规范<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <p>提交规范格式如下：</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token operator">&lt;</span>type<span class="token operator">&gt;</span><span class="token punctuation">[</span>optional scope<span class="token punctuation">]</span><span class="token operator">:</span> <span class="token operator">&lt;</span>description<span class="token operator">&gt;</span>
+
+<span class="token punctuation">[</span>optional body<span class="token punctuation">]</span>
+
+<span class="token punctuation">[</span>optional <span class="token function">footer</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">]</span>
+
+<span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span>  翻译 <span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">-</span>
+
+<span class="token operator">&lt;</span>类型<span class="token operator">&gt;</span><span class="token punctuation">[</span>可选 范围<span class="token punctuation">]</span><span class="token operator">:</span> <span class="token operator">&lt;</span>描述<span class="token operator">&gt;</span>
+
+<span class="token punctuation">[</span>可选 正文<span class="token punctuation">]</span>
+
+<span class="token punctuation">[</span>可选 脚注<span class="token punctuation">]</span>
+
+
+类型：feat、bug<span class="token operator">...</span> 更改的代码形式
+范围：用 lerna 做项目管理时，比如修改的时项目<span class="token constant">A</span><span class="token function">，feat</span><span class="token punctuation">(</span>proA<span class="token punctuation">)</span><span class="token operator">:</span> <span class="token function">xx；又或者标注修改的哪个文件，feat</span><span class="token punctuation">(</span>Home<span class="token punctuation">.</span>vue<span class="token punctuation">)</span><span class="token operator">:</span>xxx
+描述：修改的功能信息描述
+
+</code></pre></div><h2 id="commitizen"><a href="#commitizen" class="header-anchor">#</a> commitizen</h2> <p>上述只是一个<strong>提交规范</strong>的格式约束，需要人为自觉的手动执行，显然是很痛苦的。于是，就出现了 git 提交规范化工具 ——— <strong>commitizen</strong>就是其中之一。</p> <p><code>commitizen</code> 仓库名为 <a href="https://github.com/commitizen/cz-cli" target="_blank" rel="noopener noreferrer">cz-cli<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a>，它提供了 <code>git cz</code> 的指令用于代替 <code>git commit</code>，也就是说：<strong>使用 commitizen 进行代码提交（git commit）时，commitizen 会校验提交时所有必须的提交字段</strong>。</p> <div class="custom-block tip"><p class="custom-block-title">TIP</p> <p>全局安装：npm install -g commitizen</p> <p>当前版本：<strong>4.2.4</strong></p> <p>commitizen 需要全局安装，个人理解它是一个 git 的插件，因为它相当于为 <code>git commit</code> 提供了一个替代方案：<code>git cz</code></p> <p>项目依赖安装：yarn add cz-customizable -D</p> <p>当前版本：<strong>6.3.0</strong></p></div> <p>在 <code>package.json</code> 中配置 <code>commitizen</code>，配置信息如下：</p> <div class="language-json extra-class"><pre class="language-json"><code>
+  <span class="token property">&quot;config&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;commitizen&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token property">&quot;path&quot;</span><span class="token operator">:</span> <span class="token string">&quot;node_modules/cz-customizable&quot;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+
+</code></pre></div><p>接着在项目的根目录下创建自定义提示文件：<code>.cz-config.js</code>。</p> <div class="language-js extra-class"><pre class="language-js"><code>module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token comment">// 可选类型</span>
+  types<span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">{</span> value<span class="token operator">:</span> <span class="token string">&quot;feat&quot;</span><span class="token punctuation">,</span> name<span class="token operator">:</span> <span class="token string">&quot;feat:     新功能&quot;</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span> value<span class="token operator">:</span> <span class="token string">&quot;fix&quot;</span><span class="token punctuation">,</span> name<span class="token operator">:</span> <span class="token string">&quot;fix:      修复&quot;</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span> value<span class="token operator">:</span> <span class="token string">&quot;docs&quot;</span><span class="token punctuation">,</span> name<span class="token operator">:</span> <span class="token string">&quot;docs:     文档变更&quot;</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span> value<span class="token operator">:</span> <span class="token string">&quot;style&quot;</span><span class="token punctuation">,</span> name<span class="token operator">:</span> <span class="token string">&quot;style:    代码格式(不影响代码运行的变动)&quot;</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span>
+      value<span class="token operator">:</span> <span class="token string">&quot;refactor&quot;</span><span class="token punctuation">,</span>
+      name<span class="token operator">:</span> <span class="token string">&quot;refactor: 重构(既不是增加feature，也不是修复bug)&quot;</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span> value<span class="token operator">:</span> <span class="token string">&quot;perf&quot;</span><span class="token punctuation">,</span> name<span class="token operator">:</span> <span class="token string">&quot;perf:     性能优化&quot;</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span> value<span class="token operator">:</span> <span class="token string">&quot;test&quot;</span><span class="token punctuation">,</span> name<span class="token operator">:</span> <span class="token string">&quot;test:     增加测试&quot;</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span> value<span class="token operator">:</span> <span class="token string">&quot;chore&quot;</span><span class="token punctuation">,</span> name<span class="token operator">:</span> <span class="token string">&quot;chore:    构建过程或辅助工具的变动&quot;</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span> value<span class="token operator">:</span> <span class="token string">&quot;revert&quot;</span><span class="token punctuation">,</span> name<span class="token operator">:</span> <span class="token string">&quot;revert:   回退&quot;</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span> value<span class="token operator">:</span> <span class="token string">&quot;build&quot;</span><span class="token punctuation">,</span> name<span class="token operator">:</span> <span class="token string">&quot;build:    打包&quot;</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token comment">// 消息步骤</span>
+  messages<span class="token operator">:</span> <span class="token punctuation">{</span>
+    type<span class="token operator">:</span> <span class="token string">&quot;请选择提交类型:&quot;</span><span class="token punctuation">,</span>
+    customScope<span class="token operator">:</span> <span class="token string">&quot;请输入修改范围(可选):&quot;</span><span class="token punctuation">,</span>
+    subject<span class="token operator">:</span> <span class="token string">&quot;请简要描述提交(必填):&quot;</span><span class="token punctuation">,</span>
+    body<span class="token operator">:</span> <span class="token string">&quot;请输入详细描述(可选):&quot;</span><span class="token punctuation">,</span>
+    footer<span class="token operator">:</span> <span class="token string">&quot;请输入要关闭的issue(可选):&quot;</span><span class="token punctuation">,</span>
+    confirmCommit<span class="token operator">:</span> <span class="token string">&quot;确认使用以上信息提交？(y/n/e/h)&quot;</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token comment">// 跳过问题</span>
+  skipQuestions<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">&quot;body&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;footer&quot;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token comment">// subject文字长度默认是72</span>
+  subjectLimit<span class="token operator">:</span> <span class="token number">72</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre></div><p>经过上述配置之后，通过执行 <code>git cz</code> 来代替执行 <code>git commit</code> 这一步时:</p> <ul><li>会先触发 <code>commitizen</code> 的提交规范</li> <li>通过 <code>commitizen</code> 就找到了 <code>package.json</code> 中的 config 配置，进而找到 <code>cz-customizable</code> 这个可以自定义提交配置信息的第三方依赖中</li> <li><code>cz-customizable</code> 就会找到为其定义的配置文件 <code>.cz-config.js</code>，进而触发 commit 信息选择</li></ul> <p>就能看到如下的提示内容了：
+<img src="/assets/img/git-cz.dd331215.png" alt="An image"></p> <p>当前项目的 <code>package.json</code> 信息：</p> <div class="language-json extra-class"><div class="highlight-lines"><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><div class="highlighted"> </div><br><br><br><br><br><br><br><br><br><div class="highlighted"> </div><div class="highlighted"> </div><div class="highlighted"> </div><div class="highlighted"> </div><div class="highlighted"> </div><br><br><br><br><br><br><br><br></div><pre class="language-json"><code><span class="token punctuation">{</span>
+  <span class="token property">&quot;name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;vue3-solution&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;version&quot;</span><span class="token operator">:</span> <span class="token string">&quot;0.1.0&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;private&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;scripts&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;serve&quot;</span><span class="token operator">:</span> <span class="token string">&quot;vue-cli-service serve&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;build&quot;</span><span class="token operator">:</span> <span class="token string">&quot;vue-cli-service build&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;lint&quot;</span><span class="token operator">:</span> <span class="token string">&quot;vue-cli-service lint&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;prepare&quot;</span><span class="token operator">:</span> <span class="token string">&quot;husky install&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;dependencies&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;core-js&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^3.6.5&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;vue&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^3.0.0&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;vue-router&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^4.0.0-0&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;vuex&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^4.0.0-0&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;devDependencies&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;@vue/cli-plugin-babel&quot;</span><span class="token operator">:</span> <span class="token string">&quot;~4.5.15&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;@vue/cli-plugin-eslint&quot;</span><span class="token operator">:</span> <span class="token string">&quot;~4.5.15&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;@vue/cli-plugin-router&quot;</span><span class="token operator">:</span> <span class="token string">&quot;~4.5.15&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;@vue/cli-plugin-vuex&quot;</span><span class="token operator">:</span> <span class="token string">&quot;~4.5.15&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;@vue/cli-service&quot;</span><span class="token operator">:</span> <span class="token string">&quot;~4.5.15&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;@vue/compiler-sfc&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^3.0.0&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;@vue/eslint-config-standard&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^5.1.2&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;babel-eslint&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^10.1.0&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;eslint&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^6.7.2&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;eslint-plugin-import&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^2.20.2&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;eslint-plugin-node&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^11.1.0&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;eslint-plugin-promise&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^4.2.1&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;eslint-plugin-standard&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^4.0.0&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;eslint-plugin-vue&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^7.0.0&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;lint-staged&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^9.5.0&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;sass&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^1.26.5&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;sass-loader&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^8.0.2&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;config&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;commitizen&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token property">&quot;path&quot;</span><span class="token operator">:</span> <span class="token string">&quot;node_modules/cz-customizable&quot;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;gitHooks&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;pre-commit&quot;</span><span class="token operator">:</span> <span class="token string">&quot;lint-staged&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;lint-staged&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;*.{js,jsx,vue}&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">&quot;vue-cli-service lint&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;git add&quot;</span><span class="token punctuation">]</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p><strong>commitizen</strong> 的处理方式有一个不稳妥的地方是，如果有人不知道或忘记执行 <code>git cz</code>，照样执行 <code>git commit</code> 时是无法规范化提交信息了。所以，需要一种更为强制的方式，针对 <code>git commit</code> 进行规范化处理，就是 <code>Git Hooks</code>。</p> <h2 id="git-hooks"><a href="#git-hooks" class="header-anchor">#</a> Git Hooks</h2> <blockquote><p>git 在执行某个事件之前或者之后进行的一些其他额外的操作。</p></blockquote> <p>详情链接<a href="https://git-scm.com/docs/githooks" target="_blank" rel="noopener noreferrer">Git Hooks<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a>，部分 <code>git hooks</code> 如下:</p> <table><thead><tr><th>Git Hook</th> <th>调用时机</th> <th>说明</th></tr></thead> <tbody><tr><td><code>pre-applypatch</code></td> <td><code>git am</code> 执行前</td> <td></td></tr> <tr><td><code>applypatch-msg</code></td> <td><code>git am</code> 执行前</td> <td></td></tr> <tr><td><code>post-applypatch</code></td> <td><code>git am</code> 执行后</td> <td>不影响 <code>git am</code> 的结果</td></tr> <tr><td><strong><code>pre-commit</code></strong></td> <td><code>git commit</code> 执行前</td> <td>可以用 <code>git commit --no-verify</code> 绕过</td></tr> <tr><td><strong><code>commit-msg</code></strong></td> <td><code>git commit</code> 执行前</td> <td>可以用 <code>git commit --no-verify</code> 绕过</td></tr> <tr><td><code>post-commit</code></td> <td><code>git commit</code> 执行后</td> <td>不影响 <code>git commit</code> 的结果</td></tr> <tr><td><code>pre-merge-commit</code></td> <td><code>git merge</code> 执行前</td> <td>可以用 <code>git merge --no-verify</code> 绕过</td></tr> <tr><td><code>prepare-commit-msg</code></td> <td><code>git commit</code> 执行后，编辑器打开之前</td> <td></td></tr> <tr><td><code>pre-rebase</code></td> <td><code>git rebase</code> 执行前</td> <td></td></tr> <tr><td><code>post-checkout</code></td> <td><code>git checkout</code>或<code>git switch</code> 执行后</td> <td>如果不使用<code>--no-checkout</code>参数，则在 <code>git clone</code>后也会执行</td></tr> <tr><td><code>post-merge</code></td> <td><code>git commit</code> 执行后</td> <td>在执行<code>git pull</code>时也会被调用</td></tr> <tr><td><code>pre-push</code></td> <td><code>git push</code> 执行前</td> <td></td></tr> <tr><td><code>pre-receive</code></td> <td><code>git-receive-pack</code> 执行前</td> <td></td></tr> <tr><td><code>update</code></td> <td></td> <td></td></tr></tbody></table> <div class="custom-block tip"><p class="custom-block-title">TIP</p> <p>本次要用的，就是 <code>pre-commit</code> 和 <code>commit-msg</code></p> <ol><li><p><strong><code>pre-commit</code></strong></p> <ul><li><code>git commit</code> 执行之前</li> <li>不接受任何参数，并且在获取提交日志消息并进行提交之前被调用</li> <li><code>git commit</code> 如果以<strong>非零</strong> 的状态退出会导致命令在创建提交之前中止</li></ul></li> <li><p><strong><code>commit-msg</code></strong> - <code>git commit</code> 执行前 - 可用于将消息规范化为某种项目标准格式 - 可用于检查消息文件后拒绝提交</p></li></ol></div> <h2 id="husky-与-commitlint"><a href="#husky-与-commitlint" class="header-anchor">#</a> husky 与 commitlint</h2> <ol><li><strong>commitlint</strong> 用于检查提交信息，<a href="https://github.com/conventional-changelog/commitlint" target="_blank" rel="noopener noreferrer">详情<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li> <li><strong>husky</strong> 即为 <code>git hooks</code> 的工具，它可以指定在众多钩子中的哪一个回调使用 <code>commitlint</code>来校验提交信息</li></ol> <div class="custom-block tip"><p class="custom-block-title">TIP</p> <p>注意，以下安装后如果执行有问题，请检查 npm 版本是否大于 7.0</p></div> <h3 id="安装-commitlint"><a href="#安装-commitlint" class="header-anchor">#</a> 安装 commitlint</h3> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token comment"># @commitlint/config-conventional 17.0.0</span>
+<span class="token comment"># @commitlint/cli 17.0.1</span>
+
+<span class="token comment"># Install commitlint cli and conventional config</span>
+<span class="token function">npm</span> <span class="token function">install</span> --save-dev @commitlint/<span class="token punctuation">{</span>config-conventional,cli<span class="token punctuation">}</span>
+<span class="token comment"># For Windows:</span>
+<span class="token function">npm</span> <span class="token function">install</span> --save-dev @commitlint/config-conventional @commitlint/cli
+</code></pre></div><h3 id="commitlint-config-js-配置"><a href="#commitlint-config-js-配置" class="header-anchor">#</a> commitlint.config.js 配置</h3> <p><code>commitlint.config.js</code> 就是配置 <code>commit</code> 信息规范的文件，在 <code>commitlint.config.js</code> 中增加配置项，首先要继承 <code>config-conventional</code>。</p> <p>关于<code>config-conventional</code>的默认配置可以查看<a href="https://github.com/conventional-changelog/commitlint/blob/master/@commitlint/config-conventional/index.js" target="_blank" rel="noopener noreferrer">这里<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <p>注意，<strong>保存格式必须是 UTF-8 类型</strong></p> <div class="language-js extra-class"><pre class="language-js"><code>module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token comment">// 继承的规则</span>
+  <span class="token keyword">extends</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">&quot;@commitlint/config-conventional&quot;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token comment">// 定义规则类型</span>
+  rules<span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token comment">// type 类型定义，表示 git 提交的 type 必须在以下类型范围内</span>
+    <span class="token string">&quot;type-enum&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+      <span class="token comment">// 当前验证的级别，2 表示错误级别</span>
+      <span class="token number">2</span><span class="token punctuation">,</span>
+      <span class="token comment">// 在任何情况下，都进行验证</span>
+      <span class="token string">&quot;always&quot;</span><span class="token punctuation">,</span>
+      <span class="token comment">// type 的泛型类型</span>
+      <span class="token punctuation">[</span>
+        <span class="token string">&quot;feat&quot;</span><span class="token punctuation">,</span> <span class="token comment">// 新功能 feature</span>
+        <span class="token string">&quot;fix&quot;</span><span class="token punctuation">,</span> <span class="token comment">// 修复 bug</span>
+        <span class="token string">&quot;docs&quot;</span><span class="token punctuation">,</span> <span class="token comment">// 文档注释</span>
+        <span class="token string">&quot;style&quot;</span><span class="token punctuation">,</span> <span class="token comment">// 代码格式(不影响代码运行的变动)</span>
+        <span class="token string">&quot;refactor&quot;</span><span class="token punctuation">,</span> <span class="token comment">// 重构(既不增加新功能，也不是修复bug)</span>
+        <span class="token string">&quot;perf&quot;</span><span class="token punctuation">,</span> <span class="token comment">// 性能优化</span>
+        <span class="token string">&quot;test&quot;</span><span class="token punctuation">,</span> <span class="token comment">// 增加测试</span>
+        <span class="token string">&quot;chore&quot;</span><span class="token punctuation">,</span> <span class="token comment">// 构建过程或辅助工具的变动</span>
+        <span class="token string">&quot;revert&quot;</span><span class="token punctuation">,</span> <span class="token comment">// 回退</span>
+        <span class="token string">&quot;build&quot;</span><span class="token punctuation">,</span> <span class="token comment">// 打包</span>
+      <span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token comment">// subject 大小写不做校验</span>
+    <span class="token string">&quot;subject-case&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre></div><h3 id="安装-husky"><a href="#安装-husky" class="header-anchor">#</a> 安装 husky</h3> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token comment"># 当前版本 8.0.1</span>
+<span class="token function">npm</span> <span class="token function">install</span> husky --save-dev
+</code></pre></div><h3 id="配置"><a href="#配置" class="header-anchor">#</a> 配置</h3> <ol><li><p>执行 <code>npx husky install</code> 指令启动 <code>hooks</code>
+会在根目录下生成 <code>.husky</code>文件夹，包含 <code>.gitignore</code> 和 <code>husky.sh</code>文件
+<img src="/assets/img/husky-install.47303f05.png" alt="An image"></p></li> <li><p><code>commitlint</code> 配合 <code>husky</code>的使用。</p></li></ol> <p>通过 <code>husky</code> 来监听 <code>git hooks</code>，在 <code>git hooks</code> 中的 <code>commit-msg</code> 钩子里面执行 <code>commitlint</code> 对代码的提交信息进行校验。 执行命令：</p> <div class="language-bash extra-class"><pre class="language-bash"><code>npx husky <span class="token function">add</span> .husky/commit-msg <span class="token string">'npx --no-install commitlint --edit &quot;$1&quot;'</span>
+
+<span class="token comment"># 或者 yarn</span>
+<span class="token function">yarn</span> husky <span class="token function">add</span> .husky/commit-msg <span class="token string">'npx --no-install commitlint --edit &quot;$1&quot;'</span>
+
+</code></pre></div><p><strong>注意，这一步要执行指令，我手动创建文件并复制粘贴的命令，最终没有生效。</strong></p> <p>此时，<code>.husky</code>文件夹下会多出一个 <code>commit-msg</code> 文件。至此，不符合标准的提交格式都无法提交了。
+<code>.husky</code> 文件夹目录如下：</p> <div class="language-txt extra-class"><pre class="language-txt"><code>  .
+  ├── _
+  │   └── husky.sh
+  │   └── .gitignore
+  ├── commit-msg
+</code></pre></div><p><code>commit-msg</code> 的内容如下：</p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token shebang important">#!/bin/sh</span>
+<span class="token builtin class-name">.</span> <span class="token string">&quot;<span class="token variable"><span class="token variable">$(</span><span class="token function">dirname</span> <span class="token string">&quot;<span class="token variable">$0</span>&quot;</span><span class="token variable">)</span></span>/_/husky.sh&quot;</span>
+
+npx --no-install commitlint --edit <span class="token string">&quot;<span class="token variable">$1</span>&quot;</span>
+</code></pre></div><p>然后执行 git commit -m &quot;提交信息&quot;，如果不符合规范就会提醒报错</p> <p><img src="/assets/img/husky-commitlint-1.33d246a8.png" alt="An image"></p> <h3 id="package-json"><a href="#package-json" class="header-anchor">#</a> package.json</h3> <p>该 <code>package.json</code> 中不包含上述的 <code>commitizen</code> 的配置模块。两者是不关联的</p> <div class="language-json extra-class"><div class="highlight-lines"><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><div class="highlighted"> </div><div class="highlighted"> </div><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><div class="highlighted"> </div><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br></div><pre class="language-json"><code><span class="token punctuation">{</span>
+  <span class="token property">&quot;name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;vue3-backstage&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;version&quot;</span><span class="token operator">:</span> <span class="token string">&quot;0.1.0&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;private&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;scripts&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;serve&quot;</span><span class="token operator">:</span> <span class="token string">&quot;vue-cli-service serve&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;build&quot;</span><span class="token operator">:</span> <span class="token string">&quot;vue-cli-service build&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;lint&quot;</span><span class="token operator">:</span> <span class="token string">&quot;vue-cli-service lint&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;dependencies&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;core-js&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^3.6.5&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;vue&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^3.0.0&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;vue-router&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^4.0.0-0&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;vuex&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^4.0.0-0&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;devDependencies&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;@commitlint/cli&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^17.0.1&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;@commitlint/config-conventional&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^17.0.0&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;@vue/cli-plugin-babel&quot;</span><span class="token operator">:</span> <span class="token string">&quot;~4.5.15&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;@vue/cli-plugin-eslint&quot;</span><span class="token operator">:</span> <span class="token string">&quot;~4.5.15&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;@vue/cli-plugin-router&quot;</span><span class="token operator">:</span> <span class="token string">&quot;~4.5.15&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;@vue/cli-plugin-vuex&quot;</span><span class="token operator">:</span> <span class="token string">&quot;~4.5.15&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;@vue/cli-service&quot;</span><span class="token operator">:</span> <span class="token string">&quot;~4.5.15&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;@vue/compiler-sfc&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^3.0.0&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;@vue/eslint-config-standard&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^5.1.2&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;babel-eslint&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^10.1.0&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;cz-customizable&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^6.3.0&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;eslint&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^6.7.2&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;eslint-plugin-import&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^2.20.2&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;eslint-plugin-node&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^11.1.0&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;eslint-plugin-promise&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^4.2.1&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;eslint-plugin-standard&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^4.0.0&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;eslint-plugin-vue&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^7.0.0&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;husky&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^8.0.1&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;lint-staged&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^9.5.0&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;sass&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^1.26.5&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;sass-loader&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^8.0.2&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;config&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;commitizen&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token property">&quot;path&quot;</span><span class="token operator">:</span> <span class="token string">&quot;node_modules/cz-customizable&quot;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;gitHooks&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;pre-commit&quot;</span><span class="token operator">:</span> <span class="token string">&quot;lint-staged&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;lint-staged&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;*.{js,jsx,vue}&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">&quot;vue-cli-service lint&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;git add&quot;</span><span class="token punctuation">]</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h2 id="husky-配合-eslint"><a href="#husky-配合-eslint" class="header-anchor">#</a> husky 配合 Eslint</h2> <p>之前的 <code>ESLint</code> 和 <code>Prettier</code> 配合解决代码的问题，只能解决本地的代码。</p> <p>之前的 <code>Husky</code> 配合 <code>Commitlint</code> 只能解决提交的信息的不合规范的问题。</p> <p>如果有一个懒人，没有配置 <code>ESLint</code> 和 <code>Prettier</code>，并且按合规的方式提交了格式不对的代码，就坑爹了。</p> <p>所以，提交代码时，除了要对提交信息进行校验，还要对当前的代码格式进行一层校验，根据配置的规则可以自动将不符合规则的代码进行修复，至少是部分修复。</p> <p>于是乎，我们<strong>通过 <code>husky</code> 来检测 <code>pre-commit</code> 钩子，在执行该钩子的时候，执行<code>yarn husky --ext .js,.vue src</code></strong> 指令来进行代码检测。</p> <ol><li><p>执行 <code>yarn husky add .husky/pre-commit &quot;yarn eslint --ext .js,.vue src&quot;</code> 添加 commit 时的 hook。（<code>yarn eslint --ext .js,.vue src</code> 会在执行到该 hook 时运行）</p> <ul><li>执行 eslint</li> <li>针对 <code>.js</code>, <code>.vue</code> 文件</li> <li>在 <code>src</code> 文件夹下</li></ul></li> <li><p><code>.husky</code> 文件夹下会生成 <code>pre-commit</code> 文件。文件目录如下：</p></li></ol> <div class="language-txt extra-class"><pre class="language-txt"><code>.
+├── _
+│   └── husky.sh
+│   └── .gitignore
+├── commit-msg
+└── pre-commit
+</code></pre></div><p><code>pre-commit</code> 的内容如下：</p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token shebang important">#!/bin/sh</span>
+<span class="token builtin class-name">.</span> <span class="token string">&quot;<span class="token variable"><span class="token variable">$(</span><span class="token function">dirname</span> <span class="token string">&quot;<span class="token variable">$0</span>&quot;</span><span class="token variable">)</span></span>/_/husky.sh&quot;</span>
+
+<span class="token function">yarn</span> eslint --ext .js,.vue src
+</code></pre></div><p>这种情况下，当关闭了 VSCode 或者别的编辑器的 Format On Save 功能时。
+如果代码有了问题，执行 git commit 时就会报错。这行此时的校验时，<code>commit-msg</code> 校验还未执行。如下图：
+<img src="/assets/img/husky-commitlint-2.073a1777.png" alt="An image"></p> <h2 id="lint-staged-自动修复错误"><a href="#lint-staged-自动修复错误" class="header-anchor">#</a> lint-staged 自动修复错误</h2> <p>经过上面 <code>pre-commit</code> 的校验拦截，如果代码中格式等问题触发 eslint 校验规则过多时，一一手动修复肯定很麻烦。所以，我们需要针对本次提交的内容有问题的地方，进行自动问题修复。</p> <p><code>lint-stage</code> 可以<strong>只检查本次修改更新的代码，并在出现错误的时候，自动的修复并且推送</strong></p> <p>在通过 <code>vue-cli</code> 创建项目时，<code>lint-stage</code> 已经被自动安装了, 当前版本是 <strong>9.5.0</strong> 并在 <code>package.json</code> 中进行了配置。</p> <div class="language-json extra-class"><pre class="language-json"><code><span class="token property">&quot;lint-staged&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+  <span class="token property">&quot;*.{js,jsx,vue}&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token string">&quot;vue-cli-service lint&quot;</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;git add&quot;</span>
+  <span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>将该配置修改成下述形式:</p> <div class="language-json extra-class"><pre class="language-json"><code><span class="token property">&quot;lint-staged&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+  <span class="token property">&quot;src/**/*.{js,vue}&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token string">&quot;eslint --fix&quot;</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;git add&quot;</span>
+  <span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>同时修改 <code>pre-commit</code> 的内容为执行 <code>lint-staged</code> 命令：</p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token shebang important">#!/bin/sh</span>
+<span class="token builtin class-name">.</span> <span class="token string">&quot;<span class="token variable"><span class="token variable">$(</span><span class="token function">dirname</span> <span class="token string">&quot;<span class="token variable">$0</span>&quot;</span><span class="token variable">)</span></span>/_/husky.sh&quot;</span>
+
+<span class="token function">yarn</span> lint-staged
+
+</code></pre></div><p>此时再次执行 <code>git commit</code> 提交带有错误格式的内容时，eslint 会尝试进行内容的修复，如果修复好代码则会进行提交。如果自动修复失败了，提示错误由人为修复，修复成功后才能提交代码。</p> <h2 id="最后的-package-json"><a href="#最后的-package-json" class="header-anchor">#</a> 最后的 package.json</h2> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+  <span class="token property">&quot;name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;vue3-backstage&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;version&quot;</span><span class="token operator">:</span> <span class="token string">&quot;0.1.0&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;private&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;scripts&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;serve&quot;</span><span class="token operator">:</span> <span class="token string">&quot;vue-cli-service serve&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;build&quot;</span><span class="token operator">:</span> <span class="token string">&quot;vue-cli-service build&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;lint&quot;</span><span class="token operator">:</span> <span class="token string">&quot;vue-cli-service lint&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;dependencies&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;core-js&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^3.6.5&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;vue&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^3.0.0&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;vue-router&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^4.0.0-0&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;vuex&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^4.0.0-0&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;devDependencies&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;@commitlint/cli&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^17.0.1&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;@commitlint/config-conventional&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^17.0.0&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;@vue/cli-plugin-babel&quot;</span><span class="token operator">:</span> <span class="token string">&quot;~4.5.15&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;@vue/cli-plugin-eslint&quot;</span><span class="token operator">:</span> <span class="token string">&quot;~4.5.15&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;@vue/cli-plugin-router&quot;</span><span class="token operator">:</span> <span class="token string">&quot;~4.5.15&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;@vue/cli-plugin-vuex&quot;</span><span class="token operator">:</span> <span class="token string">&quot;~4.5.15&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;@vue/cli-service&quot;</span><span class="token operator">:</span> <span class="token string">&quot;~4.5.15&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;@vue/compiler-sfc&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^3.0.0&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;@vue/eslint-config-standard&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^5.1.2&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;babel-eslint&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^10.1.0&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;cz-customizable&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^6.3.0&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;eslint&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^6.7.2&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;eslint-plugin-import&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^2.20.2&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;eslint-plugin-node&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^11.1.0&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;eslint-plugin-promise&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^4.2.1&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;eslint-plugin-standard&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^4.0.0&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;eslint-plugin-vue&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^7.0.0&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;husky&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^8.0.1&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;lint-staged&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^9.5.0&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;sass&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^1.26.5&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;sass-loader&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^8.0.2&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;config&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;commitizen&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token property">&quot;path&quot;</span><span class="token operator">:</span> <span class="token string">&quot;node_modules/cz-customizable&quot;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;gitHooks&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;pre-commit&quot;</span><span class="token operator">:</span> <span class="token string">&quot;lint-staged&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;lint-staged&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;src/**/*.{js,vue}&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+      <span class="token string">&quot;eslint --fix&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;git add&quot;</span>
+    <span class="token punctuation">]</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/vue/v3/1.html" class="prev">
+        校验格式化工具
+      </a></span> <!----></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.a86fb578.js" defer></script><script src="/assets/js/2.f4c76e8f.js" defer></script><script src="/assets/js/12.f35e3c14.js" defer></script>
+  </body>
+</html>
